@@ -240,7 +240,7 @@ public class ProductDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
-        Type productType = product.getType();
+        Product.Type productType = product.getType();
         String query = null;
         switch(productType){
             case JACKET:
@@ -278,7 +278,7 @@ public class ProductDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
-        Type productType = product.getType();
+        Product.Type productType = product.getType();
         String query = null;
         switch(productType){
             case JACKET:
@@ -318,7 +318,7 @@ public class ProductDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
-        Type productType = product.getType();
+        Product.Type productType = product.getType();
         String query = null;
         switch(productType){
             case JACKET:
@@ -349,7 +349,7 @@ public class ProductDB {
         }
     }
     
-    public static Product selectProduct(Type type, int id){
+    public static Product selectProduct(Product.Type type, int id){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -393,7 +393,7 @@ public class ProductDB {
             pool.freeConnection(connection);
         }
     }
-        public ArrayList<Integer> selectProductIds(Type type){
+        public ArrayList<Integer> selectProductIds(Product.Type type){
             ConnectionPool pool = ConnectionPool.getInstance();
             Connection connection = pool.getConnection();
             PreparedStatement ps = null;
@@ -435,7 +435,7 @@ public class ProductDB {
             Connection connection = pool.getConnection();
             PreparedStatement ps = null;
             
-            Type productType = product.getType();
+            Product.Type productType = product.getType();
             String query = null;
             switch(productType){
                 case JACKET:
