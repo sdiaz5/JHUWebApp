@@ -6,16 +6,28 @@
 
 package emedina.resultBeans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author larva
  */
-public class Product {
-    private int id = -1;
-    private String name = "";
-    private String desc = "";
-    private Double price = 0.0;
-    private String size = "";
+public class Product implements Serializable {
+    
+    
+    private int id;
+    private String name;
+    private String desc;
+    private Double price;
+    private String size;
+    
+    public Product(){
+        id = -1;
+        name = "";
+        desc = "";
+        price = 0.0;
+        size = "";
+    }
 
     public Product(Type type, int id, String name, String desc, 
             Double price, String size){

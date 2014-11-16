@@ -6,17 +6,29 @@
 
 package emedina.resultBeans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author larva
  */
-public class UserInfo {
-    private String userName = "";
-    private String firstName = "";
-    private String lastName = "";
-    private String email = "";
-    private Cart cart = null;
-    private int lastLogin = 0;
+public class UserInfo implements Serializable {
+    private String userName;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private Cart cart;
+    private int lastLogin;
+    
+    public UserInfo(){
+        
+        userName = "";
+        firstName = "";
+        lastName = "";
+        email = "";
+        cart = null;
+        lastLogin = 0;
+    }
     
     public UserInfo(String userName, String firstName, String lastName, 
             String email , Cart cart, int lastLogin){

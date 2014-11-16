@@ -6,11 +6,12 @@
 
 package emedina.resultBeans;
 
+import java.io.Serializable;
 /**
  *
  * @author larva
  */
-public class Cart {
+public class Cart implements Serializable {
     private int id;
     private Product products[];
 
