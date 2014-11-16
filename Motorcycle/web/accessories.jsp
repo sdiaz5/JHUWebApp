@@ -13,10 +13,10 @@
     <div id="tooplate_menu">
         <ul>
             <li><a href="index.html" class="current">Home</a></li>
-            <li><a href="motorcycle.html">Motorcycle</a></li>
-            <li><a href="accessories.html">Accessories</a></li>
-            <li><a href="account.html">My Account</a></li>
-            <li><a href="cart.html">Checkout</a></li>
+            <li><a href="motorcycle.jsp">Motorcycle</a></li>
+            <li><a href="accessories.jsp">Accessories</a></li>
+            <li><a href="account.jsp">My Account</a></li>
+            <li><a href="cart.jsp">Checkout</a></li>
         </ul>    	
     </div> <!-- end of menu -->
     
