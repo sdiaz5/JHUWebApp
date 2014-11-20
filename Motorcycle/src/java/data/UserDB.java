@@ -5,6 +5,7 @@
  */
 package data;
 
+import emedina.resultBeans.*;
 import java.sql.*;
 /**
  *
@@ -48,7 +49,7 @@ public class UserDB {
         try{
             ps = connection.prepareStatement(query);
             ps.setString(1, user.getPassword());
-            ps.setString(2, user.getUserName);
+            ps.setString(2, user.getUserName());
             
             return ps.executeUpdate();
         } catch (SQLException e) {

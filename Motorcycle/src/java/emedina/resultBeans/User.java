@@ -12,15 +12,16 @@ import java.io.Serializable;
  *
  * @author larva
  */
-public class UserInfo implements Serializable {
+public class User implements Serializable {
     private String userName;
     private String firstName;
     private String lastName;
     private String email;
     private Cart cart;
     private int lastLogin;
+    private String password;
     
-    public UserInfo(){
+    public User(){
         
         userName = "";
         firstName = "";
@@ -28,16 +29,18 @@ public class UserInfo implements Serializable {
         email = "";
         cart = null;
         lastLogin = 0;
+        password = "";
     }
     
-    public UserInfo(String userName, String firstName, String lastName, 
-            String email , Cart cart, int lastLogin){
+    public User(String userName, String firstName, String lastName, 
+            String email , Cart cart, int lastLogin, String password){
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.lastLogin = lastLogin;
         this.cart = cart;
+        this.password = password;
     }
 
     /**
@@ -122,5 +125,13 @@ public class UserInfo implements Serializable {
      */
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+    
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
     }
 }

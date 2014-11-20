@@ -6,7 +6,7 @@
 package data;
 import java.sql.*;
 import java.util.ArrayList;
-import emedina.resultBeans.Product;
+import emedina.resultBeans.*;
 
 
 /**
@@ -20,17 +20,16 @@ public class ProductDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
-        String query = "INSERT INTO Motorcycle (name, description, rentalPrice, condition, miles, brand, type) "
+        String query = "INSERT INTO Motorcycle (name, description, price, condition, brand, type) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, motorcycle.getName());
             ps.setString(2, motorcycle.getDescription());
-            ps.setDouble(3, motorcycle.getRentalPrice());
+            ps.setDouble(3, motorcycle.getPrice());
             ps.setString(4, motorcycle.getCondition());
-            ps.setInt(5, motorcycle.getMiles());
-            ps.setString(6, motorcycle.getBrand());
-            ps.setString(7, motorcycle.getType());
+            ps.setString(5, motorcycle.getBrand());
+            ps.setString(6, motorcycle.getType());
             return ps.executeUpdate();
             
         } catch (SQLException e) {
@@ -48,16 +47,14 @@ public class ProductDB {
         PreparedStatement ps = null;
         
         String query = "UPDATE Motorcycle SET "
-                + "rentalPrice = ?, "
+                + "Price = ?, "
                 + "condition = ?, "
-                + "miles = ? "
                 + "WHERE name = ?";
         
         try {
             ps = connection.prepareStatement(query);
-            ps.setDouble(1, motorcycle.getRentalPrice());
+            ps.setDouble(1, motorcycle.getPrice());
             ps.setString(2, motorcycle.getCondition());
-            ps.setInt(3, motorcycle.getMiles());
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -109,9 +106,8 @@ public class ProductDB {
                 motorcycle = new Motorcycle();
                 motorcycle.setName(rs.getString("name"));
                 motorcycle.setDescription(rs.getString("description"));
-                motorcycle.setRentalPrice(rs.getDouble("rentalPrice"));
+                motorcycle.setPrice(rs.getDouble("rentalPrice"));
                 motorcycle.setCondition(rs.getString("condition"));
-                motorcycle.setMiles(rs.getInt("miles"));
                 motorcycle.setBrand(rs.getString("brand"));
                 motorcycle.setType(rs.getString("type"));
             }
@@ -231,7 +227,9 @@ public class ProductDB {
         PreparedStatement ps = null;
         
         String query = "DELETE FROM RentedDate "
-                + "WHERE"
+                + "WHERE";
+        
+        return 0;
     }
     //Product insert, update, delete, select
     
