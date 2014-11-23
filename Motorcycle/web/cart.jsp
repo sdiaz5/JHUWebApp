@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>My Account</title>
+<title>Shopping Cart</title>
 <meta name="keywords" content="blue, arc, theme, free templates, website templates, CSS, HTML" />
 <meta name="description" content="Blue Arc Theme is a free website template provided by tooplate.com" />
 <link href="tooplate_style.css" rel="stylesheet" type="text/css" />
