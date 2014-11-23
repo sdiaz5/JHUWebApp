@@ -12,9 +12,9 @@
 	
     <div id="tooplate_menu">
         <ul>
-            <li><a href="index.html" class="current">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="motorcycle.jsp">Motorcycle</a></li>
-            <li><a href="accessories.jsp">Accessories</a></li>
+            <li><a href="accessories.jsp" class="current">Accessories</a></li>
             <li><a href="account.jsp">My Account</a></li>
             <li><a href="cart.jsp">Checkout</a></li>
         </ul>    	
@@ -22,31 +22,34 @@
     
     <div id="tooplate_middle">
     	<div id="mid_title">
-            <br>Welcome to Motorcycle Rentals 4 U!</br>	
+            <br>Welcome to Motorcycle Sales!</br>	
         </div>
 
     </div> <!-- end of middle -->
     
     <div id="tooplate_main">
     	<div class="col_w960">
-            
-            <div class="col_w450 float_l">
-                <h2>Motorcycle Types</h2>
-                <ul>
-                    Motorcycle Helmet<br></br><img width="100" height="100" src="images/helmet.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                    
-                    Motorcycle Jacket<br></br><img width="100" height="100" src="images/jacket.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                   
-                    Motorcycle Gloves<br></br><img width="100" height="100" src="images/gloves.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                    
-                </ul>
-            </div>
+            <h2>Motorcycle Accessories</h2>
+                <form method="post" action=" " style="display: inline">
+                    Motorcycle Helmet<br></br><img width="100" height="100" src="images/helmet.jpg" alt="image" /><br />
+                    Price: $100<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Motorcycle Jacket<br></br><img width="100" height="100" src="images/jacket.jpg" alt="image" /><br />
+                    Price: $200<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Motorcycle Gloves<br></br><img width="100" height="100" src="images/gloves.jpg" alt="image" /><br />
+                    Price: $30<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
         </div>
     </div> <!-- end of main -->
     

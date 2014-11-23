@@ -14,17 +14,17 @@
 	
     <div id="tooplate_menu">
         <ul>
-            <li><a href="index.html" class="current">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="motorcycle.jsp">Motorcycle</a></li>
             <li><a href="accessories.jsp">Accessories</a></li>
             <li><a href="account.jsp">My Account</a></li>
-            <li><a href="cart.jsp">Checkout</a></li>
+            <li><a href="cart.jsp" class="current">Checkout</a></li>
         </ul>    	
     </div> <!-- end of tooplate_menu -->
     
     <div id="tooplate_middle">
     	<div id="mid_title">
-            <br>Welcome to Motorcycle Rentals 4 U!</br>	
+            <br>Welcome to Motorcycle Sales!</br>	
         </div>
 
     </div> <!-- end of middle -->
