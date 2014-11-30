@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>My Account</title>
+<title>Shopping Cart</title>
 <meta name="keywords" content="blue, arc, theme, free templates, website templates, CSS, HTML" />
 <meta name="description" content="Blue Arc Theme is a free website template provided by tooplate.com" />
 <link href="tooplate_style.css" rel="stylesheet" type="text/css" />
@@ -14,17 +14,17 @@
 	
     <div id="tooplate_menu">
         <ul>
-            <li><a href="index.html" class="current">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="motorcycle.jsp">Motorcycle</a></li>
             <li><a href="accessories.jsp">Accessories</a></li>
             <li><a href="account.jsp">My Account</a></li>
-            <li><a href="cart.jsp">Checkout</a></li>
+            <li><a href="cart.jsp" class="current">Checkout</a></li>
         </ul>    	
     </div> <!-- end of tooplate_menu -->
     
     <div id="tooplate_middle">
     	<div id="mid_title">
-            <br>Welcome to Motorcycle Rentals 4 U!</br>	
+            <br>Welcome to Motorcycle Sales!</br>	
         </div>
 
     </div> <!-- end of middle -->

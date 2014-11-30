@@ -12,8 +12,8 @@
 	
     <div id="tooplate_menu">
         <ul>
-            <li><a href="index.html" class="current">Home</a></li>
-            <li><a href="motorcycle.jsp">Motorcycle</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="motorcycle.jsp" class="current">Motorcycle</a></li>
             <li><a href="accessories.jsp">Accessories</a></li>
             <li><a href="account.jsp">My Account</a></li>
             <li><a href="cart.jsp">Checkout</a></li>
@@ -22,31 +22,48 @@
     
     <div id="tooplate_middle">
     	<div id="mid_title">
-            <br>Welcome to Motorcycle Rentals 4 U!</br>	
+            <br>Welcome to Motorcycle Sales!</br>	
         </div>
 
     </div> <!-- end of middle -->
     
     <div id="tooplate_main">
     	<div class="col_w960">
-            
-            <div class="col_w450 float_l">
                 <h2>Motorcycle Types</h2>
-                <ul>
-                    Sports Motorcycle<br></br><img width="100" height="100" src="images/sport.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                    
-                    Cruiser Motorcycle<br></br><img width="100" height="100" src="images/cruiser.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                   
-                    Trike Motorcycle<br></br><img width="100" height="100" src="images/trike.jpg" alt="image" /><br></br>
-                        Qty <input type="text" id="username" size="5" name="username"> </input>
-                        <input type="submit" value='Update'></input><br></br>
-                    
-                </ul>
-            </div>
+                <form method="post" action=" " style="display: inline">
+                    Sports Motorcycle<br></br><img width="100" height="100" src="images/sport.jpg" alt="image" /><br />
+                    Price: $20,000<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Cruiser Motorcycle<br></br><img width="100" height="100" src="images/cruiser.jpg" alt="image" /><br />
+                    Price: $10,000<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Trike Motorcycle<br></br><img width="100" height="100" src="images/trike.jpg" alt="image" /><br />
+                    Price: $30,000<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Off Road<br></br><img width="100" height="100" src="images/offroad.jpg" alt="image" /><br />
+                    Price: $5,000<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
+                    <br></br>
+                <form method="post" action=" " style="display: inline">
+                    Scooter<br></br><img width="100" height="100" src="images/scooter.jpg" alt="image" /><br />
+                    Price: $2,000<br />
+                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    <input type="submit" value="Update" />
+                </form>
         </div>
     </div> <!-- end of main -->
     
