@@ -33,35 +33,35 @@
                 <form method="post" action=" " style="display: inline">
                     Sports Motorcycle<br></br><img width="100" height="100" src="images/sport.jpg" alt="image" /><br />
                     Price: $20,000<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${motorcycle.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Cruiser Motorcycle<br></br><img width="100" height="100" src="images/cruiser.jpg" alt="image" /><br />
                     Price: $10,000<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${motorcycle.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Trike Motorcycle<br></br><img width="100" height="100" src="images/trike.jpg" alt="image" /><br />
                     Price: $30,000<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${motorcycle.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Off Road<br></br><img width="100" height="100" src="images/offroad.jpg" alt="image" /><br />
                     Price: $5,000<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${motorcycle.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Scooter<br></br><img width="100" height="100" src="images/scooter.jpg" alt="image" /><br />
                     Price: $2,000<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${motorcycle.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
         </div>
