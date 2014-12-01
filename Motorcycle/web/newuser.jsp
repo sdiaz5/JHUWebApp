@@ -12,7 +12,7 @@
 	
     <div id="tooplate_menu">
         <ul>
-            <li><a href="index.html" class="current">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="motorcycle.jsp">Motorcycle</a></li>
             <li><a href="accessories.jsp">Accessories</a></li>
             <li><a href="account.jsp">My Account</a></li>
@@ -30,9 +30,10 @@
     <form name="reg_form" id= "reg_form" action=" " method="post">
             <fieldset>
             <legend>User Information:</legend>
-            Name:   <input type="text" id="name" size="30" name="name" value=" " required><br>
-            Username: <input type="text" id="username" size="30" name="username" value=" " required><br>
-            E-mail: <input type="email" id="email" size="30" name="email" value=" " required><br>
+            First Name:   <input type="text" id="name" size="30" name="name" value="${user.firstName}" required><br>
+            Last Name:   <input type="text" id="name" size="30" name="name" value="${user.lastName}" required><br>
+            Username: <input type="text" id="username" size="30" name="username" value="${user.userName}" required><br>
+            E-mail: <input type="email" id="email" size="30" name="email" value="${user.email}" required><br>
             </fieldset>
 
             <div class="center">
