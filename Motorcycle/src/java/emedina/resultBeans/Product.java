@@ -20,6 +20,8 @@ public class Product implements Serializable {
     private String desc;
     private Double price;
     private String size;
+    private int quantity;
+    private String productNumber;
     
     public Product(){
         id = -1;
@@ -27,16 +29,20 @@ public class Product implements Serializable {
         desc = "";
         price = 0.0;
         size = "";
+        quantity = 0;
+        productNumber = "";
     }
 
     public Product(Type type, int id, String name, String desc, 
-            Double price, String size){
+            Double price, String size, int quantity, String productNumber){
         this.type = type;
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.price = price;
         this.size = size;
+        this.quantity = quantity;
+        this.productNumber = productNumber;
     }
     
     /**
@@ -122,6 +128,23 @@ public class Product implements Serializable {
     public void setType(Type type) {
         this.type = type;
     }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
+    public int getQuantity(){
+        return quantity;
+    }
+    
+    public void setProductNumber(String productNumber){
+        this.productNumber = productNumber;
+    }
+    
+    public String getProductNumber(){
+        return productNumber;
+    }
+    
     
     public enum Type{
         UNKNOWN, MOTORCYCLE, GLOVE, JACKET, HELMET
