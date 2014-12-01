@@ -20,8 +20,8 @@ public class ProductDB {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
-        String query = "INSERT INTO Motorcycle (name, description, price, condition, brand, type) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Motorcycle (name, description, price, condition, brand, type, quantity, productNumber) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, motorcycle.getName());
@@ -30,6 +30,8 @@ public class ProductDB {
             ps.setString(4, motorcycle.getCondition());
             ps.setString(5, motorcycle.getBrand());
             ps.setString(6, motorcycle.getType());
+            ps.setInt(7, motorcycle.getQuantity());
+            ps.setString(8, motorcycle.getProductNumber());
             return ps.executeUpdate();
             
         } catch (SQLException e) {
@@ -41,20 +43,43 @@ public class ProductDB {
         }
     }
     
-    public static int updateMotorcycle(Motorcycle motorcycle) {
+    public static int updateMotorcyclePrice(Motorcycle motorcycle) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         
         String query = "UPDATE Motorcycle SET "
-                + "Price = ?, "
-                + "condition = ?, "
+                + "price = ?, "
                 + "WHERE name = ?";
         
         try {
             ps = connection.prepareStatement(query);
             ps.setDouble(1, motorcycle.getPrice());
-            ps.setString(2, motorcycle.getCondition());
+            ps.setString(2, motorcycle.getName());
+            
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+    public static int updateMotorcycleQuantity(Motorcycle motorcycle) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        
+        String query = "UPDATE Motorcycle SET "
+                + "quantity = ?, "
+                + "WHERE name = ?";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, motorcycle.getQuantity());
+            ps.setString(2, motorcycle.getName());
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -106,10 +131,12 @@ public class ProductDB {
                 motorcycle = new Motorcycle();
                 motorcycle.setName(rs.getString("name"));
                 motorcycle.setDescription(rs.getString("description"));
-                motorcycle.setPrice(rs.getDouble("rentalPrice"));
+                motorcycle.setPrice(rs.getDouble("price"));
                 motorcycle.setCondition(rs.getString("condition"));
                 motorcycle.setBrand(rs.getString("brand"));
                 motorcycle.setType(rs.getString("type"));
+                motorcycle.setQuantity(rs.getInt("quantity"));
+                motorcycle.setProductNumber(rs.getString("productNumber"));
             }
             return motorcycle;
         } catch (SQLException e) {
@@ -148,89 +175,6 @@ public class ProductDB {
         }
     }
     
-    public static int setMotorcycleOrderId (Motorcycle motorcycle, int Order_id){
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "UPDATE Motorcycle SET "
-                + "Order_id = ? "
-                + "WHERE name = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, Order_id);
-            ps.setString(2, motorcycle.getName());
-            
-            return ps.executeUpdate();
-        } catch (SQLException e){
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int insertRented(int motorcycleId, Date dateBorrowed, Date dateReturned) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "INSERT INTO RentedDate (dateBorrowed, dateReturned, motorcycle_id) "
-                + "VALUES (?, ?, ?)";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setDate(1, dateBorrowed);
-            ps.setDate(2, dateReturned);
-            ps.setInt(3, motorcycleId);
-            return ps.executeUpdate();
-        } catch(SQLException e){
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int updateRented(int motorcycleId, Date dateBorrowed, Date dateReturned){
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "UPDATE RentedDate SET "
-                + "dateBorrowed = ?, "
-                + "dateReturned = ? "
-                + "WHERE motorcycle_id = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setDate(1, dateBorrowed);
-            ps.setDate(2, dateReturned);
-            ps.setInt(3, motorcycleId);
-            
-            return ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    //FIX THIS PART NEEDS SOME TYPE OF JOIN!!!!!!!
-    public static int deleteRented(int motorcycleId, int orderId){
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "DELETE FROM RentedDate "
-                + "WHERE";
-        
-        return 0;
-    }
     //Product insert, update, delete, select
     
     public static int insertProduct(Product product) {
@@ -242,16 +186,16 @@ public class ProductDB {
         String query = null;
         switch(productType){
             case JACKET:
-                query = "INSERT INTO Jacket (name, description, rentalPrice, size) "
-                    + "VALUES (?, ?, ?, ?)";
+                query = "INSERT INTO Jacket (name, description, price, size, quantity, productNumber) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
                 break;
             case HELMET:
-                query = "INSERT INTO Helmet (name, description, rentalPrice, size) "
-                    + "VALUES (?, ?, ?, ?)";
+                query = "INSERT INTO Helmet (name, description, price, size, quantity, productNumber) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
                 break;
             case GLOVE:
-                query = "INSERT INTO Gloves (name, description, rentalPrice, size) "
-                    + "VALUES (?, ?, ?, ?)";
+                query = "INSERT INTO Gloves (name, description, price, size, quantity, productNumber) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
                 break;
         }
        
@@ -261,6 +205,8 @@ public class ProductDB {
             ps.setString(2, product.getDescription());
             ps.setDouble(3, product.getPrice());
             ps.setString(4, product.getSize());
+            ps.setInt(5, product.getQuantity());
+            ps.setString(6, product.getProductNumber());
             return ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -271,7 +217,7 @@ public class ProductDB {
         }
     }
     
-    public static int updateProduct(Product product) {
+    public static int updateProductPrice(Product product) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -281,17 +227,17 @@ public class ProductDB {
         switch(productType){
             case JACKET:
                 query = "UPDATE Jacket SET "
-                        + "rentalPrice = ? "
+                        + "price = ? "
                         + "WHERE name = ?";
                 break;
             case HELMET:
                 query = "UPDATE Helmet SET "
-                        + "rentalPrice = ? "
+                        + "price = ? "
                         + "WHERE name = ?";
                 break;
             case GLOVE:
                 query = "UPDATE Gloves SET "
-                        + "rentalPrice = ? "
+                        + "price = ? "
                         + "WHERE name = ?";
                 break;
         }
@@ -299,6 +245,46 @@ public class ProductDB {
         try {
             ps = connection.prepareStatement(query);
             ps.setDouble(1,product.getPrice());
+            ps.setString(2, product.getName());
+            
+            return ps.executeUpdate();
+        } catch(SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+        public static int updateProductQuantity(Product product) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        
+        Product.Type productType = product.getType();
+        String query = null;
+        switch(productType){
+            case JACKET:
+                query = "UPDATE Jacket SET "
+                        + "quantity = ? "
+                        + "WHERE name = ?";
+                break;
+            case HELMET:
+                query = "UPDATE Helmet SET "
+                        + "quantity = ? "
+                        + "WHERE name = ?";
+                break;
+            case GLOVE:
+                query = "UPDATE Gloves SET "
+                        + "quantity = ? "
+                        + "WHERE name = ?";
+                break;
+        }
+                       
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setDouble(1,product.getQuantity());
             ps.setString(2, product.getName());
             
             return ps.executeUpdate();
@@ -378,8 +364,10 @@ public class ProductDB {
                 product = new Product();
                 product.setName(rs.getString("name"));
                 product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("rentalPrice"));
+                product.setPrice(rs.getDouble("price"));
                 product.setSize(rs.getString("size"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setProductNumber(rs.getString("productNumber"));
             }
             return product;
         } catch (SQLException e) {
@@ -428,44 +416,5 @@ public class ProductDB {
             }
         }
         
-        public static int setProductOrderId(Product product, int Order_id){
-            ConnectionPool pool = ConnectionPool.getInstance();
-            Connection connection = pool.getConnection();
-            PreparedStatement ps = null;
-            
-            Product.Type productType = product.getType();
-            String query = null;
-            switch(productType){
-                case JACKET:
-                    query = "UPDATE Jacket SET "
-                        + "Order_id = ? "
-                        + "WHERE name = ?";
-                    break;
-                case HELMET:
-                    query = "UPDATE Helmet SET "
-                        + "Order_id = ? "
-                        + "WHERE name = ?";
-                    break;
-                case GLOVE:
-                    query = "UPDATE Gloves SET "
-                        + "Order_id = ? "
-                        + "WHERE name = ?";
-                    break;
-            }
-            
-            try {
-                ps = connection.prepareStatement(query);
-                ps.setInt(1, Order_id);
-                ps.setString(2, product.getName());
-                
-                return ps.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println(e);
-                return 0;
-            } finally {
-                DBUtil.closePreparedStatement(ps);
-                pool.freeConnection(connection);
-            }
-        }
     }
     
