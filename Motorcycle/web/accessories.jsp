@@ -33,21 +33,21 @@
                 <form method="post" action=" " style="display: inline">
                     Motorcycle Helmet<br></br><img width="100" height="100" src="images/helmet.jpg" alt="image" /><br />
                     Price: $100<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${product.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Motorcycle Jacket<br></br><img width="100" height="100" src="images/jacket.jpg" alt="image" /><br />
                     Price: $200<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${product.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
                     <br></br>
                 <form method="post" action=" " style="display: inline">
                     Motorcycle Gloves<br></br><img width="100" height="100" src="images/gloves.jpg" alt="image" /><br />
                     Price: $30<br />
-                    Qty <input type="text" id="username" size="5" name="username" /> 
+                    Qty <input type="text" id="quantity" size="5" name="quantity" value="${product.quantity}" /> 
                     <input type="submit" value="Update" />
                 </form>
         </div>
