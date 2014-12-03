@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <Context antiJARLocking="true" path="/Motorcycle">
   <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" logAbandoned="true" maxActive="100" 
             maxIdle="30" maxWait="10000" name="jdbc/JHUAppdb" password="sesame" removeAbandoned="true" 
@@ -6,3 +7,6 @@
             url="jdbc:mysql://elidevninjababy.from-dc.com:4321/JHUAppdb?autoReconnect=true" 
             username="root"/>
 </Context>
+=======
+<Context antiJARLocking="true" path="/Motorcycle"/>
+>>>>>>> 6923bd71770a1513fb71f5de18dbe4b7f6df126b
