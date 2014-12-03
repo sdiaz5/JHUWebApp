@@ -7,6 +7,7 @@
 package emedina.resultBeans;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 /**
  *
@@ -99,6 +100,16 @@ public class Product implements Serializable {
      */
     public void setPrice(Double price) {
         this.price = price;
+    }
+    
+    public String getPriceCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(price);
+    }
+    
+    public String getImageURL() {
+        String imageURL = "/JHUWebApp/images/" + productNumber + ".jpg";
+        return imageURL;
     }
 
     /**

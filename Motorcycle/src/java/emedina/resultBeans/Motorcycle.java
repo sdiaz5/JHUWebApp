@@ -6,6 +6,7 @@
 package emedina.resultBeans;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 /**
  *
  * @author mark
@@ -74,6 +75,15 @@ public class Motorcycle implements Serializable {
         this.price = price;
     }
     
+    public String getPriceCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(price);
+    }
+    
+    public String getImageURL() {
+        String imageURL = "/JHUWebApp/images/" + productNumber + ".jpg";
+        return imageURL;
+    }
     public String getCondition(){
         return condition;
     }

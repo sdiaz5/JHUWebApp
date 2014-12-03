@@ -221,3 +221,11 @@ margin: 0 auto;
 font-weight: normal;
 color: #fff;
 }
+
+#sidebar { 
+    width: 180px; 
+    float: right; 
+    height: 400px;
+    padding-left: 20px;
+    
+}

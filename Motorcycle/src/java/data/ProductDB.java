@@ -149,6 +149,42 @@ public class ProductDB {
         }
     }
     
+        public static Motorcycle selectMotorcycle(String productNumber) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT * FROM Motorcycle "
+                + "WHERE productNumber = ?";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, productNumber);
+            rs = ps.executeQuery();
+            Motorcycle motorcycle = null;
+            if(rs.next()) {
+                motorcycle = new Motorcycle();
+                motorcycle.setName(rs.getString("name"));
+                motorcycle.setDescription(rs.getString("description"));
+                motorcycle.setPrice(rs.getDouble("price"));
+                motorcycle.setCondition(rs.getString("condition"));
+                motorcycle.setBrand(rs.getString("brand"));
+                motorcycle.setType(rs.getString("type"));
+                motorcycle.setQuantity(rs.getInt("quantity"));
+                motorcycle.setProductNumber(rs.getString("productNumber"));
+            }
+            return motorcycle;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
     public ArrayList<Integer> selectMotorcycleIds(){
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -379,6 +415,56 @@ public class ProductDB {
             pool.freeConnection(connection);
         }
     }
+    
+    public static Product selectProduct(String productNumber){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = null;
+        String accessory = productNumber.substring(productNumber.length()-1);
+        switch(accessory){
+            case "J":
+                query = "SELECT * FROM Jacket "
+                        + "WHERE productNumber = ?";
+                break;
+            case "H":
+                query = "SELECT * FROM Helmet "
+                        + "WHERE productNumber = ?";
+                break;
+            case "G":
+                query = "SELECT * FROM Gloves "
+                        + "WHERE productNumber = ?";
+                break;
+        }
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1,productNumber);
+            rs = ps.executeQuery();
+            Product product = null;
+            if (rs.next()) {
+                product = new Product();
+                product.setName(rs.getString("name"));
+                product.setDescription(rs.getString("description"));
+                product.setPrice(rs.getDouble("price"));
+                product.setSize(rs.getString("size"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setProductNumber(rs.getString("productNumber"));
+            }
+            return product;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+    
         public ArrayList<Integer> selectProductIds(Product.Type type){
             ConnectionPool pool = ConnectionPool.getInstance();
             Connection connection = pool.getConnection();
