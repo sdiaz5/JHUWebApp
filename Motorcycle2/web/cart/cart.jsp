@@ -21,7 +21,7 @@
           <c:forEach var="item" items="${cart.items}">
             <tr class="cart_row">
               <td>
-                <form action="<c:url value='/order/updateItem'/>" method="post">
+                <form action=" " method="post">
                   <input type="hidden" name="productCode" 
                          value="<c:out value='${item.product.code}'/>">
                   <input type=text name="quantity" 
@@ -33,7 +33,7 @@
               <td>${item.product.priceCurrencyFormat}</td>
               <td>${item.totalCurrencyFormat}</td>
               <td>
-                <form action="<c:url value='/order/removeItem'/>" method="post">
+                <form action=" " method="post">
                   <input type="hidden" name="productCode" 
                          value="<c:out value='${item.product.code}'/>">
                   <input type="submit" value="Remove">
@@ -41,15 +41,7 @@
               </td>
             </tr>
           </c:forEach>
-            <tr>
-              <td colspan="2">
-                <p><b>To change the quantity for an item</b>, enter the new quantity 
-                      and click on the Update button.</p>
-                <p><b>To remove an item</b>, click on the Remove button.</p>
-              </td>
-              <td colspan="3">&nbsp;</td>
-            </tr>
-          </table>
+            </table>
       </c:otherwise>
   </c:choose>
 
@@ -59,8 +51,9 @@
   
 <c:if test="${emptyCart == null}">
 
-    <!-- Add Checkout Button -->
-
+    <form action="<c:url value='/cart/user.jsp'/>" method="post">
+      <input type="submit" value="Checkout">
+    </form>
 </c:if>
 </section>
 
