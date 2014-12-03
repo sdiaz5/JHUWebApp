@@ -1,7 +1,6 @@
-    <div id="tooplate_footer_wrapper">
-            <div id="tooplate_footer">
-                Copyright © 2048 - Designed by Team A 
-            </div> <!-- end of footer -->
-    </div>
+    <footer>
+        <p>&copy; Copyright ${currentYear} Team A; Motorcycles R Us; 
+            All rights reserved.</p>
+    </footer>
 </body>
 </html>
