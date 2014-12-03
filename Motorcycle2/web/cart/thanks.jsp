@@ -2,7 +2,7 @@
 
 <section>
     
-<h1>Thanks for joining our email list</h1>
+<h1>Thank you for your order</h1>
 <p>Here is the information that you entered:</p>
 
 <label  class="no_pad_top">Email</label>
