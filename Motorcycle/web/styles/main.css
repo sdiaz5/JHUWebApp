@@ -81,6 +81,9 @@ header img {
     border-left: 2px solid black;
 }
 
+.inline {
+    display:inline;
+}
 /* the styles for the side navigation bar */
 #sidebarA ul {
     margin-left: 0;

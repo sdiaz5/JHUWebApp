@@ -3,7 +3,7 @@
 <!-- start the middle column -->
 
 <section>
-    <h1>Welcome to Motorcycles R Us!</h1>
+    <h1>Welcome to Motorcycles R Us! ${user.firstName}</h1>
 
     <p>Thanks for visiting. Please feel free to browse around and take a look
     at the different products we offer. </p>

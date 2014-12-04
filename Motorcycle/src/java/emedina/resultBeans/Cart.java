@@ -12,45 +12,45 @@ import java.io.Serializable;
  * @author larva
  */
 public class Cart implements Serializable {
-    private User user;
-    private Product products[];
-    private Motorcycle motorcycles[];
+    private int id;
+    private CartItem cartItem;
     
     public Cart (){
-        this.products = new Product[0];
-        this.motorcycles = new Motorcycle[0];
+        id = -1;
+        cartItem = null;
     }
 
-    public Cart(int id, Product products[], Motorcycle motorcycles[]){
-        this.products = products;
-        this.motorcycles = motorcycles;
-    }
-
-    /**
-     * @return the products
-     */
-    public Product[] getProducts() {
-        return products;
+    public Cart(int id, CartItem cartItem){
+        this.id = id;
+        this.cartItem = cartItem;
     }
 
     /**
-     * @param products the products to set
+     * @return the id
      */
-    public void setProducts(Product[] products) {
-        this.products = products;
+    public int getId() {
+        return id;
     }
 
     /**
-     * @return the user
+     * @param id the id to set
      */
-    public User getUser() {
-        return user;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * @param user the user to set
+     * @return the cartItem
      */
-    public void setUser(User user) {
-        this.user = user;
+    public CartItem getCartItem() {
+        return cartItem;
     }
+
+    /**
+     * @param cartItem the cartItem to set
+     */
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
+    }
+    
 }

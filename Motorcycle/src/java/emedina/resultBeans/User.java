@@ -17,7 +17,6 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private Cart cart;
     private int lastLogin;
     private String password;
     
@@ -27,7 +26,6 @@ public class User implements Serializable {
         firstName = "";
         lastName = "";
         email = "";
-        cart = null;
         lastLogin = 0;
         password = "";
     }
@@ -39,7 +37,6 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.lastLogin = lastLogin;
-        this.cart = cart;
         this.password = password;
     }
 
@@ -111,20 +108,6 @@ public class User implements Serializable {
      */
     public void setLastLogin(int lastLogin) {
         this.lastLogin = lastLogin;
-    }
-
-    /**
-     * @return the cart
-     */
-    public Cart getCart() {
-        return cart;
-    }
-
-    /**
-     * @param cart the cart to set
-     */
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
     
     public String getPassword(){
