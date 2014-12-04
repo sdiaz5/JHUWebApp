@@ -51,7 +51,7 @@ public class CatalogController extends HttpServlet {
         String productNumber = request.getPathInfo();
         if(productNumber != null){
             productNumber = productNumber.substring(1, 7);
-            Motorcycle motorcycle = ProductDB.selectMotorcycle(productNumber);
+            Motorcycle motorcycle = (Motorcycle) ProductDB.selectProduct(productNumber);
             HttpSession session = request.getSession();
             session.setAttribute("motorcycle", motorcycle);
         }

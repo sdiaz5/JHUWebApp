@@ -12,25 +12,18 @@ import java.io.Serializable;
  * @author larva
  */
 public class Cart implements Serializable {
-    private int id;
+    private User user;
     private Product products[];
+    private Motorcycle motorcycles[];
+    
+    public Cart (){
+        this.products = new Product[0];
+        this.motorcycles = new Motorcycle[0];
+    }
 
-    public Cart(int id, Product products[]){
-        this.id = id;
+    public Cart(int id, Product products[], Motorcycle motorcycles[]){
         this.products = products;
-    }
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
+        this.motorcycles = motorcycles;
     }
 
     /**
@@ -45,5 +38,19 @@ public class Cart implements Serializable {
      */
     public void setProducts(Product[] products) {
         this.products = products;
+    }
+
+    /**
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }

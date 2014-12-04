@@ -11,15 +11,15 @@ import java.text.NumberFormat;
  *
  * @author mark
  */
-public class Motorcycle implements Serializable {
+public class Motorcycle extends Product {
     
     private int id;
     private String name;
     private String description;
-    private double price;
+    private Double price;
     private String condition;
     private String brand;
-    private String type;
+    private String bikeType;
     private int quantity;
     private String productNumber;
     
@@ -29,20 +29,20 @@ public class Motorcycle implements Serializable {
         description = "";
         price = 0.0;
         condition = "";
-        type = "";
+        bikeType = "";
         quantity = 0;
         productNumber = "";
         
     }
     
     public Motorcycle(int id, String name, String description, double price, 
-            String condition, String type, int quantity, String productNumber){
+            String condition, String bikeType, int quantity, String productNumber){
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.condition = condition;
-        this.type = type;
+        this.bikeType = bikeType;
         this.quantity = quantity;
         this.productNumber = productNumber;
     }
@@ -67,11 +67,11 @@ public class Motorcycle implements Serializable {
         this.description = description;
     }
     
-    public double getPrice(){
+    public Double getPrice(){
         return price;
     }
     
-    public void setPrice(double price){
+    public void setPrice(Double price){
         this.price = price;
     }
     
@@ -100,12 +100,12 @@ public class Motorcycle implements Serializable {
         this.brand = brand;
     }
     
-    public String getType(){
-        return type;
+    public String getBikeType(){
+        return bikeType;
     }
     
-    public void setType(String type){
-        this.type = type;
+    public void setBikeType(String bikeType){
+        this.bikeType = bikeType;
     }
     
     public int getQuantity(){

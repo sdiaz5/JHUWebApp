@@ -15,202 +15,6 @@ import emedina.resultBeans.*;
  */
 public class ProductDB {
     
-    public static int insertMotorcycle(Motorcycle motorcycle) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "INSERT INTO Motorcycle (name, description, price, condition, brand, type, quantity, productNumber) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, motorcycle.getName());
-            ps.setString(2, motorcycle.getDescription());
-            ps.setDouble(3, motorcycle.getPrice());
-            ps.setString(4, motorcycle.getCondition());
-            ps.setString(5, motorcycle.getBrand());
-            ps.setString(6, motorcycle.getType());
-            ps.setInt(7, motorcycle.getQuantity());
-            ps.setString(8, motorcycle.getProductNumber());
-            return ps.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int updateMotorcyclePrice(Motorcycle motorcycle) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "UPDATE Motorcycle SET "
-                + "price = ?, "
-                + "WHERE name = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setDouble(1, motorcycle.getPrice());
-            ps.setString(2, motorcycle.getName());
-            
-            return ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int updateMotorcycleQuantity(Motorcycle motorcycle) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "UPDATE Motorcycle SET "
-                + "quantity = ?, "
-                + "WHERE name = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, motorcycle.getQuantity());
-            ps.setString(2, motorcycle.getName());
-            
-            return ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static int deleteMotorcycle(Motorcycle motorcycle) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        
-        String query = "DELETE FROM Motorcycle "
-                + "WHERE name = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, motorcycle.getName());
-            
-            return ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e);
-            return 0;
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static Motorcycle selectMotorcycle(int id) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        String query = "SELECT * FROM Motorcycle "
-                + "WHERE id = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            Motorcycle motorcycle = null;
-            if(rs.next()) {
-                motorcycle = new Motorcycle();
-                motorcycle.setName(rs.getString("name"));
-                motorcycle.setDescription(rs.getString("description"));
-                motorcycle.setPrice(rs.getDouble("price"));
-                motorcycle.setCondition(rs.getString("condition"));
-                motorcycle.setBrand(rs.getString("brand"));
-                motorcycle.setType(rs.getString("type"));
-                motorcycle.setQuantity(rs.getInt("quantity"));
-                motorcycle.setProductNumber(rs.getString("productNumber"));
-            }
-            return motorcycle;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-        public static Motorcycle selectMotorcycle(String productNumber) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        String query = "SELECT * FROM Motorcycle "
-                + "WHERE productNumber = ?";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            ps.setString(1, productNumber);
-            rs = ps.executeQuery();
-            Motorcycle motorcycle = null;
-            if(rs.next()) {
-                motorcycle = new Motorcycle();
-                motorcycle.setName(rs.getString("name"));
-                motorcycle.setDescription(rs.getString("description"));
-                motorcycle.setPrice(rs.getDouble("price"));
-                motorcycle.setCondition(rs.getString("condition"));
-                motorcycle.setBrand(rs.getString("brand"));
-                motorcycle.setType(rs.getString("type"));
-                motorcycle.setQuantity(rs.getInt("quantity"));
-                motorcycle.setProductNumber(rs.getString("productNumber"));
-            }
-            return motorcycle;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return null;
-        } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public ArrayList<Integer> selectMotorcycleIds(){
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        String query = "SELECT id From Motorcycle ORDER BY id";
-        
-        try {
-            ps = connection.prepareStatement(query);
-            rs = ps.executeQuery();
-            ArrayList<Integer> motorcycleIds = new ArrayList<>();
-            while (rs.next()) {
-                motorcycleIds.add(rs.getInt("id"));
-            }
-            return motorcycleIds;
-        } catch (SQLException e) {
-                System.out.println(e);
-                return null;
-        } finally {
-                DBUtil.closeResultSet(rs);
-                DBUtil.closePreparedStatement(ps);
-                pool.freeConnection(connection);
-        }
-    }
-    
     //Product insert, update, delete, select
     
     public static int insertProduct(Product product) {
@@ -233,9 +37,24 @@ public class ProductDB {
                 query = "INSERT INTO Gloves (name, description, price, size, quantity, productNumber) "
                     + "VALUES (?, ?, ?, ?, ?, ?)";
                 break;
+            case MOTORCYCLE:
+                query = "INSERT INTO Motorcycle (name, description, price, condition, brand, type, quantity, productNumber) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                break;  
         }
        
         try {
+            if(product.getType() == Product.Type.MOTORCYCLE)
+            {
+                ps.setString(1, ((Motorcycle) product).getName());
+                ps.setString(2, ((Motorcycle) product).getDescription());
+                ps.setDouble(3, ((Motorcycle) product).getPrice());
+                ps.setString(4, ((Motorcycle) product).getCondition());
+                ps.setString(5, ((Motorcycle) product).getBrand());
+                ps.setString(6, ((Motorcycle) product).getBikeType());
+                ps.setInt(7, ((Motorcycle) product).getQuantity());
+                ps.setString(8, ((Motorcycle) product).getProductNumber());
+            }
             ps = connection.prepareStatement(query);
             ps.setString(1, product.getName());
             ps.setString(2, product.getDescription());
@@ -273,6 +92,11 @@ public class ProductDB {
                 break;
             case GLOVE:
                 query = "UPDATE Gloves SET "
+                        + "price = ? "
+                        + "WHERE name = ?";
+                break;
+            case MOTORCYCLE:
+                query = "UPDATE Motorcycle SET "
                         + "price = ? "
                         + "WHERE name = ?";
                 break;
@@ -316,6 +140,11 @@ public class ProductDB {
                         + "quantity = ? "
                         + "WHERE name = ?";
                 break;
+            case MOTORCYCLE:
+                query = "UPDATE Motorcycle SET "
+                        + "quantity = ? "
+                        + "WHERE name = ?";
+                break;
         }
                        
         try {
@@ -351,6 +180,10 @@ public class ProductDB {
                 break;
             case GLOVE:
                 query = "DELETE FROM Gloves "
+                    + "WHERE name = ?";
+                break;
+            case MOTORCYCLE:
+                query = "DELETE FROM Motorcycle "
                     + "WHERE name = ?";
                 break;
         }
@@ -389,6 +222,10 @@ public class ProductDB {
                 query = "SELECT * FROM Gloves "
                         + "WHERE id = ?";
                 break;
+            case MOTORCYCLE:
+                query = "SELECT * FROM Motorcycle "
+                        + "WHERE id = ?";
+                break;
         }
         
         try {
@@ -396,14 +233,35 @@ public class ProductDB {
             ps.setInt(1,id);
             rs = ps.executeQuery();
             Product product = null;
-            if (rs.next()) {
-                product = new Product();
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                product.setSize(rs.getString("size"));
-                product.setQuantity(rs.getInt("quantity"));
-                product.setProductNumber(rs.getString("productNumber"));
+            if (type == Product.Type.MOTORCYCLE)
+            {
+                if(rs.next())
+                {
+                    Motorcycle motorcycle = new Motorcycle();
+                    motorcycle.setName(rs.getString("name"));
+                    motorcycle.setDescription(rs.getString("description"));
+                    motorcycle.setPrice(rs.getDouble("price"));
+                    motorcycle.setCondition(rs.getString("condition"));
+                    motorcycle.setBrand(rs.getString("brand"));
+                    motorcycle.setBikeType(rs.getString("type"));
+                    motorcycle.setType(type);
+                    motorcycle.setQuantity(rs.getInt("quantity"));
+                    motorcycle.setProductNumber(rs.getString("productNumber"));
+                    product = motorcycle;
+                }
+            }
+            else
+            {
+                if (rs.next()) {
+                    product = new Product();
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setSize(rs.getString("size"));
+                    product.setQuantity(rs.getInt("quantity"));
+                    product.setProductNumber(rs.getString("productNumber"));
+                    product.setType(type);
+                }
             }
             return product;
         } catch (SQLException e) {
@@ -424,18 +282,27 @@ public class ProductDB {
         
         String query = null;
         String accessory = productNumber.substring(productNumber.length()-1);
+        Product.Type type;
         switch(accessory){
             case "J":
                 query = "SELECT * FROM Jacket "
                         + "WHERE productNumber = ?";
+                type = Product.Type.JACKET;
                 break;
             case "H":
                 query = "SELECT * FROM Helmet "
                         + "WHERE productNumber = ?";
+                type = Product.Type.HELMET;
                 break;
             case "G":
                 query = "SELECT * FROM Gloves "
                         + "WHERE productNumber = ?";
+                type = Product.Type.GLOVE;
+                break;
+            default:
+                query = "SELECT * FROM Motorcycle "
+                        + "WHERE productNumber = ?";
+                type = Product.Type.MOTORCYCLE;
                 break;
         }
         
@@ -444,14 +311,34 @@ public class ProductDB {
             ps.setString(1,productNumber);
             rs = ps.executeQuery();
             Product product = null;
-            if (rs.next()) {
-                product = new Product();
-                product.setName(rs.getString("name"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                product.setSize(rs.getString("size"));
-                product.setQuantity(rs.getInt("quantity"));
-                product.setProductNumber(rs.getString("productNumber"));
+            if (type == Product.Type.MOTORCYCLE)
+            {
+                if(rs.next()) {
+                    Motorcycle motorcycle = new Motorcycle();
+                    motorcycle.setName(rs.getString("name"));
+                    motorcycle.setDescription(rs.getString("description"));
+                    motorcycle.setPrice(rs.getDouble("price"));
+                    motorcycle.setCondition(rs.getString("condition"));
+                    motorcycle.setBrand(rs.getString("brand"));
+                    motorcycle.setBikeType(rs.getString("type"));
+                    motorcycle.setType(type);
+                    motorcycle.setQuantity(rs.getInt("quantity"));
+                    motorcycle.setProductNumber(rs.getString("productNumber"));
+                    product = motorcycle;
+                }
+            }
+            else
+            {
+                if (rs.next()) {
+                    product = new Product();
+                    product.setName(rs.getString("name"));
+                    product.setDescription(rs.getString("description"));
+                    product.setPrice(rs.getDouble("price"));
+                    product.setSize(rs.getString("size"));
+                    product.setQuantity(rs.getInt("quantity"));
+                    product.setProductNumber(rs.getString("productNumber"));
+                    product.setType(type);
+                }
             }
             return product;
         } catch (SQLException e) {
@@ -481,6 +368,9 @@ public class ProductDB {
                     break;
                 case GLOVE:
                     query = "SELECT id FROM Gloves ORDER BY id";
+                    break;
+                case MOTORCYCLE:
+                    query = "SELECT id FROM Motorcycle ORDER BY id";
                     break;
             }
             
