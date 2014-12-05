@@ -18,12 +18,12 @@
             <th>Amount</th>
             <th>&nbsp;</th>
          </tr>
-          <c:forEach var="item" items="${cart.items}">
+          <c:forEach var="item" items="${cart.cartItems}">
             <tr class="cart_row">
               <td>
                 <form action=" " method="post">
-                  <input type="hidden" name="productCode" 
-                         value="<c:out value='${item.product.code}'/>">
+                  <input type="hidden" name="productNumber" 
+                         value="<c:out value='${item.product.productNumber}'/>">
                   <input type=text name="quantity" 
                          value="<c:out value='${item.quantity}'/>" id="quantity">
                   <input type="submit" value="Update">
@@ -32,10 +32,11 @@
               <td>${item.product.description}</td>
               <td>${item.product.priceCurrencyFormat}</td>
               <td>${item.totalCurrencyFormat}</td>
+            
               <td>
                 <form action=" " method="post">
-                  <input type="hidden" name="productCode" 
-                         value="<c:out value='${item.product.code}'/>">
+                  <input type="hidden" name="productNumber" 
+                         value="<c:out value='${item.product.productNumber}'/>">
                   <input type="submit" value="Remove">
                 </form>                  
               </td>

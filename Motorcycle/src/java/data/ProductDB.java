@@ -331,6 +331,7 @@ public class ProductDB {
             {
                 if (rs.next()) {
                     product = new Product();
+                    product.setId(rs.getInt("id"));
                     product.setName(rs.getString("name"));
                     product.setDescription(rs.getString("description"));
                     product.setPrice(rs.getDouble("price"));

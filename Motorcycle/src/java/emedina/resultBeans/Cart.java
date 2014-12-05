@@ -7,22 +7,23 @@
 package emedina.resultBeans;
 
 import java.io.Serializable;
+import java.util.*;
 /**
  *
  * @author larva
  */
 public class Cart implements Serializable {
     private int id;
-    private CartItem cartItem;
+    private List<CartItem> cartItems;
     
     public Cart (){
         id = -1;
-        cartItem = null;
+        cartItems = new ArrayList<>();
     }
 
-    public Cart(int id, CartItem cartItem){
+    public Cart(int id, List<CartItem> cartItems){
         this.id = id;
-        this.cartItem = cartItem;
+        this.cartItems = cartItems;
     }
 
     /**
@@ -42,15 +43,42 @@ public class Cart implements Serializable {
     /**
      * @return the cartItem
      */
-    public CartItem getCartItem() {
-        return cartItem;
+    public List<CartItem> getCartItems() {
+        return cartItems;
     }
 
     /**
      * @param cartItem the cartItem to set
      */
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+    
+    public int getCount() {
+        return cartItems.size();
+    }
+    
+    public void addCartItem(CartItem item) {
+        String productNumber = item.getProduct().getProductNumber();
+        int quantity = item.getQuantity();
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getProduct().getProductNumber().equals(productNumber)) {
+                cartItem.setQuantity(quantity);
+                return;
+            }
+        }
+        cartItems.add(item);
+    }
+    
+    public void removeCartItem(CartItem item) {
+        String productNumber = item.getProduct().getProductNumber();
+        for (int i = 0; i < cartItems.size(); i++) {
+            CartItem cartItem = cartItems.get(i);
+            if (cartItem.getProduct().getProductNumber().equals(productNumber)) {
+                cartItems.remove(i);
+                return;
+            }
+        }
     }
     
 }

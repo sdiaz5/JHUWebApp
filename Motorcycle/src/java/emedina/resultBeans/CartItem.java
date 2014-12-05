@@ -6,19 +6,22 @@
 
 package emedina.resultBeans;
 
+import java.io.Serializable;
+import java.text.NumberFormat;
+
 /**
  *
  * @author larva
  */
-public class CartItem {
+public class CartItem implements Serializable {
     private int id;
     private Product product;
-    private int quantity;
+    private int quantity = 1;
 
     public CartItem(){
         id = -1;
         product = null;
-        quantity = 0;
+        
     }
     
     public CartItem(int id, Product product, int quantity)
@@ -39,7 +42,7 @@ public class CartItem {
      * @param id the id to set
      */
     public void setId(int id) {
-        this.id = id;
+       this.id = id;
     }
 
     /**
@@ -68,5 +71,15 @@ public class CartItem {
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    
+    public double getTotal() {
+        double total = product.getPrice() * quantity;
+        return total;
+    }
+    
+    public String getTotalCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(this.getTotal());
     }
 }

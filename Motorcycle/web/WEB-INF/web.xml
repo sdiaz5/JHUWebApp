@@ -6,6 +6,10 @@
         <servlet-class>controllers.CatalogController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>controllers.OrderController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserController</servlet-name>
         <servlet-class>controllers.UserController</servlet-class>
     </servlet>
@@ -13,6 +17,10 @@
     <servlet-mapping>
         <servlet-name>CatalogController</servlet-name>
         <url-pattern>/catalog/product/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/order/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserController</servlet-name>
