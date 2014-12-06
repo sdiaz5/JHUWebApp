@@ -89,6 +89,8 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         int quantity;
+        String message = "";
+        
         try {
             quantity = Integer.parseInt(quantityString);
             if (quantity < 0)
@@ -97,7 +99,7 @@ public class OrderController extends HttpServlet {
             quantity = 1;
         }
         Product product = ProductDB.selectProduct(productNumber);
-        if (product != null && cart != null) {
+        if (product != null && cart != null  && product.getQuantity() >= quantity) {
             CartItem cartItem = new CartItem();
             cartItem.setProduct(product);
             cartItem.setQuantity(quantity);
@@ -105,7 +107,12 @@ public class OrderController extends HttpServlet {
                 cart.addCartItem(cartItem);
             else
                 cart.removeCartItem(cartItem);
+        } else {
+            message = "Cannot update cart.  We do not have enough inventory. Current number of " + product.getName() +
+                    " in stock is: " + product.getQuantity();
+            
         }
+        request.setAttribute("message", message);
         return defaultURL;
     }
     
@@ -114,12 +121,23 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         String productNumber = request.getParameter("productNumber");
-        Product product = ProductDB.selectProduct(productNumber);
-        if (product != null && cart != null) {
+        if(Character.isDigit(productNumber.charAt(productNumber.length()-1))){
+            Motorcycle motorcycle = (Motorcycle) ProductDB.selectProduct(productNumber);
+            if (motorcycle != null && cart != null) {
+            CartItem cartItem = new CartItem();
+            cartItem.setProduct(motorcycle);
+            cart.removeCartItem(cartItem);
+        }
+        } else {
+            Product product = ProductDB.selectProduct(productNumber);
+            if (product != null && cart != null) {
             CartItem cartItem = new CartItem();
             cartItem.setProduct(product);
             cart.removeCartItem(cartItem);
         }
+        }
+        
+        
         return defaultURL;
     }
     

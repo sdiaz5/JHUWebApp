@@ -203,6 +203,11 @@ th, td {
     float: left;
     margin-right: 1em;
 }
+#message {
+    margin-top: .5em;
+    font-weight: bold;
+    color: red;
+}
 
 /* the style for the admin pages */
 #admin {
