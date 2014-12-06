@@ -4,26 +4,26 @@
     <h1>Motorcycles and Accessories</h1>
     
     <h2>Motorcycles</h2>
-    <p><a href="product/HA1357/motorcycle">Harley Davidson Fat Boy</a></p>
-    <p><a href="product/HA1358/motorcycle">Harley Davidson Electra Glide</a></p>
-    <p><a href="product/HA1359/motorcycle">Harley Davidson SwitchBack</a></p>
-    <p><a href="product/VI2367/motorcycle">Victory Highball</a></p>
-    <p><a href="product/VI2368/motorcycle">Victory Gunner</a></p>
-    <p><a href="product/HO7988/motorcycle">Honda Interceptor</a></p>
-    <p><a href="product/HO7989/motorcycle">Honda CBR 1000RR</a></p>
-    <p><a href="product/SU4021/motorcycle">Suzuki GSX-R1000</a></p>
-    <p><a href="product/SU4022/motorcycle">Suzuki Hayabusa</a></p>
-    <p><a href="product/DU0321/motorcycle">Ducati 1199 Panigale R</a></p>
-    <p><a href="product/HA1360/motorcycle">Harley Davidson Freewheeler</a></p>
-    <p><a href="product/CA8909/motorcycle">Can-AM Spyder F3-S</a></p>
-    <p><a href="product/HO7990/motorcycle">Honda CRF250X</a></p>
-    <p><a href="product/YA8123/motorcycle">Yamaha YZ450F</a></p>
-    <p><a href="product/HO7991/motorcycle">Honda CRF150R</a></p>
-    <p><a href="product/YA8124/motorcycle">Yamaha WRF250F</a></p>
-    <p><a href="product/HO7992/motorcycle">Honda Forza</a></p>
-    <p><a href="product/HO7993/motorcycle">Honda Ruckus</a></p>
-    <p><a href="product/YA8125/motorcycle">Yamaha Smax</a></p>
-    <p><a href="product/YA8126/motorcycle">Yamaha Vino Classic</a></p>
+    <p><a href="product/HA1357">Harley Davidson Fat Boy</a></p>
+    <p><a href="product/HA1358">Harley Davidson Electra Glide</a></p>
+    <p><a href="product/HA1359">Harley Davidson SwitchBack</a></p>
+    <p><a href="product/VI2367">Victory Highball</a></p>
+    <p><a href="product/VI2368">Victory Gunner</a></p>
+    <p><a href="product/HO7988">Honda Interceptor</a></p>
+    <p><a href="product/HO7989">Honda CBR 1000RR</a></p>
+    <p><a href="product/SU4021">Suzuki GSX-R1000</a></p>
+    <p><a href="product/SU4022">Suzuki Hayabusa</a></p>
+    <p><a href="product/DU0321">Ducati 1199 Panigale R</a></p>
+    <p><a href="product/HA1360">Harley Davidson Freewheeler</a></p>
+    <p><a href="product/CA8909">Can-AM Spyder F3-S</a></p>
+    <p><a href="product/HO7990">Honda CRF250X</a></p>
+    <p><a href="product/YA8123">Yamaha YZ450F</a></p>
+    <p><a href="product/HO7991">Honda CRF150R</a></p>
+    <p><a href="product/YA8124">Yamaha WRF250F</a></p>
+    <p><a href="product/HO7992">Honda Forza</a></p>
+    <p><a href="product/HO7993">Honda Ruckus</a></p>
+    <p><a href="product/YA8125">Yamaha Smax</a></p>
+    <p><a href="product/YA8126">Yamaha Vino Classic</a></p>
     
     <h2>Helmets</h2>
     <p><a href="product/H123H">HJC CL-17</a></p>

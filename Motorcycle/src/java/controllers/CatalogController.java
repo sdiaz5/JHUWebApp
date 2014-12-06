@@ -23,12 +23,8 @@ public class CatalogController extends HttpServlet {
             throws ServletException, IOException {
         
         String requestURI = request.getRequestURI();
-        String url;
-        if (requestURI.endsWith("/motorcycle")) {
-            url = showMotorcycle(request, response);
-        } else {
-            url = showProduct(request, response);
-        }
+        String url = showProduct(request, response);
+
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -38,23 +34,21 @@ public class CatalogController extends HttpServlet {
             HttpServletResponse response) {
         String productNumber = request.getPathInfo();
         if(productNumber != null){
-            productNumber = productNumber.substring(1);
-            Product product = ProductDB.selectProduct(productNumber);
-            HttpSession session = request.getSession();
-            session.setAttribute("product", product);
+
+            if(Character.isDigit(productNumber.charAt(productNumber.length()-1))){
+                productNumber = productNumber.substring(1, 7);
+                Motorcycle motorcycle = (Motorcycle) ProductDB.selectProduct(productNumber);
+                HttpSession session = request.getSession();
+                session.setAttribute("product", motorcycle);
+            } else {
+                productNumber = productNumber.substring(1);
+                Product product = ProductDB.selectProduct(productNumber);
+                HttpSession session = request.getSession();
+                session.setAttribute("product", product);
+            }
+            
+            
         }
         return "/catalog/product.jsp";
-    }
-    
-    private String showMotorcycle(HttpServletRequest request,
-            HttpServletResponse response) {
-        String productNumber = request.getPathInfo();
-        if(productNumber != null){
-            productNumber = productNumber.substring(1, 7);
-            Motorcycle motorcycle = (Motorcycle) ProductDB.selectProduct(productNumber);
-            HttpSession session = request.getSession();
-            session.setAttribute("motorcycle", motorcycle);
-        }
-        return "/catalog/motorcycle.jsp";
     }
 }
