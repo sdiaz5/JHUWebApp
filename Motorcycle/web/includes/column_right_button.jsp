@@ -3,7 +3,7 @@
         <c:choose><c:when test="${user != null}">
             <form method="post" action="<c:url value='/order/addItem'/>">
                 <input type="hidden" name="productNumber" value="${product.productNumber}">
-                <input type="image" src="<c:url value='/images/addbutton.jpg'/>" 
+                <br><input type="image" src="<c:url value='/images/addbutton.jpg'/>" 
                        width="200" alt="Add to Cart">
             </form>
         </c:when></c:choose>
