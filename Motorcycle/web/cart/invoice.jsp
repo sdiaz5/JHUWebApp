@@ -25,16 +25,8 @@
  </tr>
 
   <c:forEach var="item" items="${cart.cartItems}">
-            <tr class="cart_row">
-              <td>
-                  <form action="<c:url value='/order/updateItem' /> " method="post">
-                  <input type="hidden" name="productNumber" 
-                         value="<c:out value='${item.product.productNumber}'/>">
-                  <input type=text name="quantity" 
-                         value="<c:out value='${item.quantity}'/>" id="quantity">
-                  <input type="submit" value="Update">
-                </form>                  
-              </td>
+            <tr style="width:auto;" class="cart_row">
+              <td> ${item.quantity} </td>
               <c:choose>
                   <c:when test = "${item.product.type == 'MOTORCYCLE'}">
                       <td>${item.product.bikeType}: ${item.product.brand} ${item.product.name}</td>
@@ -59,8 +51,8 @@
   </tr>
 </table>
 
-<form action="<c:url value='/cart/user.jsp' />" method="post" id="float_left">
-     <input type="submit" value="Edit Information">
+<form action="<c:url value='/cart/cart.jsp'/>" method="get" id="float_left">
+  <input type="submit" value="Go to Cart">
 </form>
 
 <form action="<c:url value='/cart/credit_card.jsp' />" method="post">

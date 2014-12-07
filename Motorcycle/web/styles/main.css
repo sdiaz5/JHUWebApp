@@ -85,14 +85,6 @@ header img {
 .inline {
     display:inline;
 }
-/* the styles for the side navigation bar */
-#sidebarA ul {
-    margin-left: 0;
-    list-style: none;
-}
-#sidebarA li {
-    margin-bottom: .5em;
-}
 
 /* the styles for the section */
 section {
@@ -231,12 +223,6 @@ aside p {
 }
 aside img {
     margin-bottom: 1em;    
-}
-#sidebarA { 
-    width: 180px; 
-    float: left; 
-    height: 400px;
-    border-right: 2px solid #006600;
 }
 #sidebarB { 
     width: 180px; 

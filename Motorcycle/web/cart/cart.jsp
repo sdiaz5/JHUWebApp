@@ -21,7 +21,7 @@
             <th>&nbsp;</th>
          </tr>
           <c:forEach var="item" items="${cart.cartItems}">
-            <tr class="cart_row">
+            <tr style="width:auto;" class="cart_row">
               <td>
                   <form action="<c:url value='/order/updateItem' /> " method="post">
                   <input type="hidden" name="productNumber" 
@@ -65,7 +65,7 @@
   
 <c:if test="${emptyCart == null}">
 
-    <form action="<c:url value='/cart/user.jsp'/>" method="post">
+    <form action="<c:url value='/cart/invoice.jsp'/>" method="post">
       <input type="submit" value="Checkout">
     </form>
 </c:if>
