@@ -8,11 +8,10 @@ html {
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 87.5%;
-    width: 964px;
+    width: auto;
     background-color: white;
     margin: 15px auto;
     padding: 15px 25px;
-    border: 1px solid black;
 }
 section, aside, h1, h2, p, ul {
     margin: 0;
@@ -20,11 +19,11 @@ section, aside, h1, h2, p, ul {
 }
 section, aside {
     margin-top: 1.5em;
-    margin-bottom: 1em;    
+    margin-bottom: 1em;  
 }
 
 h1 { font-size: 175%; }
-h2 { font-size: 125%; }
+h2  { font-size: 125%; }
 
 a { font-weight: bold; }
 a:link { color: blue; }
@@ -59,7 +58,9 @@ header h2 {
     text-align: center;
 }
 header img { 
-    float: left;
+    float: none;
+    margin: 0 auto; 
+    display:block;
 }
 
 /* the styles for the top navigation bar */
@@ -95,16 +96,21 @@ header img {
 
 /* the styles for the section */
 section {
-    width: 520px;
+    width: auto;
     padding-right: 20px;
     padding-left: 20px;
-    float: left;    
+    float: none;    
 }
 section h1 {
     margin-bottom: 0.35em; 
 }
 section h2 {
     margin-bottom: 0.35em;
+    width: auto;
+}
+
+section p {
+    width: auto;
 }
 .top_margin {
     margin-top: 1em;
@@ -207,22 +213,6 @@ th, td {
     margin-top: .5em;
     font-weight: bold;
     color: red;
-}
-
-/* the style for the admin pages */
-#admin {
-    width: 700px;
-}
-#admin form {
-    margin-top: .5em;
-}
-#admin label {
-    width: 14em;
-    margin-left: .5em;
-    padding-top: 0.25em;    
-}
-#admin .left_margin {
-    margin-left: 0em;
 }
 
 

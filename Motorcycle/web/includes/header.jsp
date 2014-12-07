@@ -14,7 +14,7 @@
 
     <header>
         <img src="<c:url value='/images/open_road.jpg'/>" 
-             alt="Motorcycles R Us">
+             alt="Motorcycles R Us"><br>
         <h1>Motorcycles R Us</h1>
         <h2>The best quality motorcycles and accessories!</h2>
     </header>
