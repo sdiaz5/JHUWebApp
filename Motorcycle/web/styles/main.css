@@ -169,17 +169,17 @@ th, td {
 
 /* the style for the cart pages */
 .cart {
-    width: 700px;
+    width: auto;
 }
 .cart label {
     float: left;
-    width: 10em;
+    width: auto;
     font-weight: bold;
     padding-top: 0.25em;    
 }
 .cart input[type="text"], input[type="email"], input[type="password"] {
     float: left;
-    width: 12em;
+    width: auto;
     margin-left: 0.5em;
     margin-right: 0.2em;
 }
