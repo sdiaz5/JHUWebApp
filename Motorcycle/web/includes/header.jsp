@@ -14,7 +14,7 @@
 
     <header>
         <img src="<c:url value='/images/open_road.jpg'/>" 
-             alt="Motorcycles R Us">
+             alt="Motorcycles R Us"><br>
         <h1>Motorcycles R Us</h1>
         <h2>The best quality motorcycles and accessories!</h2>
     </header>
@@ -35,7 +35,7 @@
                     <li><a href="<c:url value='/account.jsp'/>">
                         My Account</a></li>
                     <li><a href="<c:url value='/cart/cart.jsp'/>">
-                        Checkout</a></li>
+                        Cart</a></li>
                         <li><form class="inline" method='post' name="logout" action="<c:url value='/user/logout'/>"><a href="javascript: document.logout.submit();">
                                     Logout</a></form></li>
                 </c:otherwise>

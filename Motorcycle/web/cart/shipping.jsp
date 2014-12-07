@@ -11,16 +11,16 @@
     
     <label>First Name</label>
     <input type="text" name="firstName"  maxlength=20 
-               value="${user.firstName}" readonly>
-    <p class="required">*</p><br>
+               value="${user.firstName}" disabled="disabled">
+    <p class="required"></p><br>
     
     <label>Last Name</label>
-    <input type="text" name="lastName" value="${user.lastName}" readonly>
-    <p class="required">*</p><br>
+    <input type="text" name="lastName" value="${user.lastName}" disabled="disabled">
+    <p class="required"></p><br>
     
     <label>Email Address</label>
-    <input type="email" name="email" value="${user.email}" readonly>
-    <p class="required">*</p><br>
+    <input type="email" name="email" value="${user.email}" disabled="disabled">
+    <p class="required"></p><br>
 
     <label>Street Address</label>
     <input type="text" name="street" value="${user.contactInfo.street}" required> 

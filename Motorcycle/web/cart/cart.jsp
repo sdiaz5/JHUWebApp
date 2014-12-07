@@ -11,17 +11,16 @@
           <p>Your cart is empty.</p>
       </c:when>
       <c:otherwise>
-        <table>
+        <table style="table-layout:fixed;">
            <tr>
-            <th>Qty</th>
+            <th style="width:20%;">Qty</th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
             <th>Amount</th>
             <th>&nbsp;</th>
          </tr>
           <c:forEach var="item" items="${cart.cartItems}">
-            <tr class="cart_row">
+            <tr style="width:auto;" class="cart_row">
               <td>
                   <form action="<c:url value='/order/updateItem' /> " method="post">
                   <input type="hidden" name="productNumber" 
@@ -34,13 +33,11 @@
               <c:choose>
                   <c:when test = "${item.product.type == 'MOTORCYCLE'}">
                       <td>${item.product.bikeType}: ${item.product.brand} ${item.product.name}</td>
-                      <td>${item.product.description}</td>
                       <td>${item.product.priceCurrencyFormat}</td>
                       <td>${item.totalCurrencyFormat}</td>
                   </c:when>
                   <c:otherwise>
                       <td>${item.product.type}: ${item.product.name}</td>
-                      <td>${item.product.description}</td>
                       <td>${item.product.priceCurrencyFormat}</td>
                       <td>${item.totalCurrencyFormat}</td>
                   </c:otherwise>
@@ -64,7 +61,6 @@
 </form>
   
 <c:if test="${emptyCart == null}">
-
     <form action="<c:url value='/cart/shipping.jsp'/>" method="post">
       <input type="submit" value="Checkout">
     </form>
