@@ -102,7 +102,7 @@ section h2 {
 }
 
 section p {
-    width: auto;
+    width: 70%;
 }
 .top_margin {
     margin-top: 1em;
@@ -142,50 +142,6 @@ br {
 }
 
 
-table {
-    border: none;
-}
-th {
-    vertical-align: bottom;
-    text-align: left;
-}
-td {
-    vertical-align: top;
-}
-th, td {
-    padding: .3em;
-}
-.top {
-    vertical-align: top;
-}
-
-/* the style for the cart pages */
-.cart {
-    width: auto;
-}
-.cart label {
-    float: left;
-    width: auto;
-    font-weight: bold;
-    padding-top: 0.25em;    
-}
-.cart input[type="text"], input[type="email"], input[type="password"] {
-    float: left;
-    width: auto;
-    margin-left: 0.5em;
-    margin-right: 0.2em;
-}
-.cart input[type="button"] {
-    margin-left: 0.5em;
-}
-.cart select {
-    margin-left: 0.5em;
-    margin-right: 0.2em;
-}
-.cart_row input[type="text"] {
-    width: 2em;
-    margin-left: 0em;
-}
 #required {
     margin-left: 8.5em;
     margin-bottom: .5em;
@@ -206,32 +162,6 @@ th, td {
     font-weight: bold;
     color: red;
 }
-
-
-/* the styles for the sidebars */
-aside h1 {
-    font-size: 125%;
-    padding-bottom: .5em;
-}
-aside h2 {
-    font-size: 100%;
-    color: yellow;
-    padding-bottom: .5em;
-}
-aside p {
-    margin-bottom: .5em;
-}
-aside img {
-    margin-bottom: 1em;    
-}
-#sidebarB { 
-    width: 180px; 
-    float: right; 
-    height: 400px;
-    padding-left: 20px;
-    border-left: 2px solid #006600;
-}
-
 
 /* the styles for the footer */
 footer {
