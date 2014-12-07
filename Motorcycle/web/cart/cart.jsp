@@ -65,7 +65,7 @@
   
 <c:if test="${emptyCart == null}">
 
-    <form action="<c:url value='/cart/user.jsp'/>" method="post">
+    <form action="<c:url value='/cart/shipping.jsp'/>" method="post">
       <input type="submit" value="Checkout">
     </form>
 </c:if>

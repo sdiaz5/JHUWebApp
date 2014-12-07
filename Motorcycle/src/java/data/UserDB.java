@@ -99,10 +99,18 @@ public class UserDB {
             User user = null;
             if(rs.next()){
                 user = new User();
+                ContactInfo contact = null;
                 user.setFirstName(rs.getString("firstName"));
                 user.setLastName(rs.getString("lastName"));
                 user.setEmail(rs.getString("email"));
-                user.setUserName(rs.getString("userName"));
+                user.setUserName(rs.getString("userName")); 
+                user.setId(rs.getInt("id"));
+
+                contact = selectContactInfo(user.getId());
+                if (contact != null)
+                {
+                    user.setContactInfo(contact);
+                }
             }
             return user;
         } catch (SQLException e) {

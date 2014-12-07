@@ -5,14 +5,15 @@
  */
 package controllers;
 
+import data.UserDB;
+import emedina.resultBeans.ContactInfo;
+import emedina.resultBeans.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import data.UserDB;
-import emedina.resultBeans.User;
 /**
  *
  * @author mark
@@ -33,6 +34,8 @@ public class UserController extends HttpServlet {
             url = logoutUser(request, response);
         }else if (requestURI.endsWith("/register")){
             url = registerUser(request, response);
+        }else if (requestURI.endsWith("/setShipping")){
+            url = setShipping(request, response);
         }
         getServletContext()
                 .getRequestDispatcher(url)
@@ -84,7 +87,42 @@ public class UserController extends HttpServlet {
         request.getSession().setAttribute("user", null);
         return "/login.jsp";
     }
-        
+
+    private String setShipping(HttpServletRequest request,
+            HttpServletResponse response)
+    {
+        User user = (User) request.getSession().getAttribute("user");
+        String rv = "/cart/invoice.jsp";
+        if (user != null)
+        {
+            String street = request.getParameter("street");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String zip = request.getParameter("zip");
+
+            if(street != null && city != null && state != null && 
+                zip != null)
+            {
+                ContactInfo contact = user.getContactInfo();
+                if(contact == null){
+                    contact = new ContactInfo();
+                    contact.setUserId(user.getId());
+                }
+                
+                contact.setState(state);
+                contact.setStreet(street);
+                contact.setCity(city);
+                contact.setZipCode(zip);
+                user.setContactInfo(contact);
+
+                UserDB.updateContact(contact, user.getId());
+            }else{
+                rv = "/user/setShipping";
+            }
+        }
+        return rv;
+    }
+    
     private String loginUser(HttpServletRequest request,
             HttpServletResponse response) {
 

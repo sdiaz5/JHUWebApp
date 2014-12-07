@@ -1,4 +1,4 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+﻿SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
@@ -21,11 +21,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `JHUAppdb`.`ConatactInfo`
+-- Table `JHUAppdb`.`ContactInfo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `JHUAppdb`.`ConatactInfo` ;
+DROP TABLE IF EXISTS `JHUAppdb`.`ContactInfo` ;
 
-CREATE TABLE IF NOT EXISTS `JHUAppdb`.`ConatactInfo` (
+CREATE TABLE IF NOT EXISTS `JHUAppdb`.`ContactInfo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
@@ -271,13 +271,13 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `JHUAppdb`.`ConatactInfo`
+-- Data for table `JHUAppdb`.`ContactInfo`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `JHUAppdb`;
-INSERT INTO `JHUAppdb`.`ConatactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (1, '205 Oak Ln', 'Sunnyvale', 'CA', '14465', 1);
-INSERT INTO `JHUAppdb`.`ConatactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (2, '47 Tyner Dr', 'Brookville', 'PA', '48826', 2);
-INSERT INTO `JHUAppdb`.`ConatactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (3, '1314 Limestone Ct', 'Boulder', 'CO', '75426', 3);
+INSERT INTO `JHUAppdb`.`ContactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (1, '205 Oak Ln', 'Sunnyvale', 'CA', '14465', 1);
+INSERT INTO `JHUAppdb`.`ContactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (2, '47 Tyner Dr', 'Brookville', 'PA', '48826', 2);
+INSERT INTO `JHUAppdb`.`ContactInfo` (`id`, `street`, `city`, `state`, `zipCode`, `userId`) VALUES (3, '1314 Limestone Ct', 'Boulder', 'CO', '75426', 3);
 
 COMMIT;
 

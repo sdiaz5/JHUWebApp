@@ -41,7 +41,7 @@
   </tr>
 </table>
 
-<form action="<c:url value='/cart/user.jsp' />" method="post" id="float_left">
+<form action="<c:url value='/cart/shipping.jsp' />" method="post" id="float_left">
      <input type="submit" value="Edit Address">
 </form>
 

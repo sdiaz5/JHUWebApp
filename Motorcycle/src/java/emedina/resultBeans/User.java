@@ -19,6 +19,9 @@ public class User implements Serializable {
     private String email;
     private int lastLogin;
     private String password;
+    private ContactInfo contactInfo;
+    private String addressHTMLFormat;
+    private int id;
     
     public User(){
         
@@ -28,16 +31,20 @@ public class User implements Serializable {
         email = "";
         lastLogin = 0;
         password = "";
+        contactInfo = null;
+        this.addressHTMLFormat = "";
+        id = -1;
     }
     
     public User(String userName, String firstName, String lastName, 
-            String email , Cart cart, int lastLogin, String password){
+            String email , Cart cart, int lastLogin, String password, ContactInfo contactInfo){
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.lastLogin = lastLogin;
         this.password = password;
+        this.contactInfo = contactInfo;
     }
 
     /**
@@ -116,5 +123,44 @@ public class User implements Serializable {
     
     public void setPassword(String password){
         this.password = password;
+    }
+
+    /**
+     * @return the contactInfo
+     */
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    /**
+     * @param contactInfo the contactInfo to set
+     */
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+    
+    public String getAddressHTMLFormat (){
+        String rv = "";
+        if (contactInfo != null)
+        {
+            rv = contactInfo.getState() + "<br>" + contactInfo.getCity() + 
+                    ", " + contactInfo.getState()+ " " + 
+                    contactInfo.getZipCode()+ "<br>";
+        }
+        return rv;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }
