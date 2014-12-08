@@ -5,6 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>Your invoice</h1>
+<p> ${user.firstName} below is the invoice for your purchase. You can go back to
+    your cart to edit its contents or continue to pay with a credit card.</p>
 
 <table>
   <tr>
