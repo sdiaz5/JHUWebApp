@@ -36,6 +36,10 @@ public class UserController extends HttpServlet {
             url = registerUser(request, response);
         }else if (requestURI.endsWith("/setShipping")){
             url = setShipping(request, response);
+        }else if (requestURI.endsWith("/setUser")){
+            url = setUser(request, response);
+        }else if (requestURI.endsWith("/changePass")){
+            url = setPassword(request, response);
         }
         getServletContext()
                 .getRequestDispatcher(url)
@@ -149,4 +153,107 @@ public class UserController extends HttpServlet {
         
         return url;
     }
-}    
+    
+    private String setUser(HttpServletRequest request,
+        HttpServletResponse response) {
+        String rv = "/account.jsp";
+        String account_message = "Successfully updated user information";
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null)
+        {
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            String email = request.getParameter("email");
+            String street = request.getParameter("street");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String zip = request.getParameter("zip");
+
+            if(street != null && city != null && state != null && 
+                zip != null)
+            {
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                
+                if(!UserDB.checkUserEmail(user.getUserName(), email.trim())){
+                    if(UserDB.emailExists(email.trim()))
+                    {
+                        account_message = "Another user already uses this email.";
+                    }
+                    else
+                    {
+                        user.setEmail(email.trim());
+                    }
+                }
+                
+                UserDB.updateUser(user);
+                
+                ContactInfo contact = user.getContactInfo();
+                if(contact == null){
+                    contact = new ContactInfo();
+                    contact.setUserId(user.getId());
+                }
+                
+                contact.setState(state);
+                contact.setStreet(street);
+                contact.setCity(city);
+                contact.setZipCode(zip);
+                user.setContactInfo(contact);
+
+                UserDB.updateContact(contact, user.getId());
+                request.setAttribute("account_message", account_message);
+            }
+        }
+        else
+        {//No User
+            rv = "/login.jsp";
+        }
+        return rv;
+    }    
+
+    private String setPassword(HttpServletRequest request,
+        HttpServletResponse response) {  
+        String pass_message = "Successfully Updated Password";
+        String rv = "/account.jsp";
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null)
+        {
+            String pass = request.getParameter("pass");
+            String nPass = request.getParameter("npass");
+            String rPass = request.getParameter("rpass");
+
+            if(pass != null && nPass != null && rPass != null)
+            {
+                if(UserDB.checkUserPassword(user.getUserName(), pass))
+                {
+                    if(nPass.trim().equals(rPass.trim()))
+                    {
+                        user.setPassword(nPass);
+                        UserDB.updateUser(user);
+                    }
+                    else
+                    {
+                        pass_message = "Your new password must match the re-type.";
+                    }
+                }
+                else
+                {
+                    pass_message = "Your old password was not valid.";
+                }
+            }
+            else
+            {
+                pass_message = "Invalid parameters";
+            }
+        }
+        else
+        {   //No User
+            pass_message = "Action could not be performed, no user was found, please login.";
+            rv = "/login.jsp";
+        }
+        
+        request.setAttribute("pass_message", pass_message);
+
+        return rv;
+    }
+}

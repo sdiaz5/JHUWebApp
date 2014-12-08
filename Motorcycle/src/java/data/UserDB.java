@@ -43,13 +43,19 @@ public class UserDB {
         PreparedStatement ps = null;
         
         String query = "UPDATE User SET "
-                + "password = ? "
+                + "password =? ,"
+                + "firstName =? ,"
+                + "lastName =? ,"
+                + "email=? "
                 + "WHERE userName = ?";
     
         try{
             ps = connection.prepareStatement(query);
             ps.setString(1, user.getPassword());
-            ps.setString(2, user.getUserName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getUserName());
             
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -102,6 +108,7 @@ public class UserDB {
                 ContactInfo contact = null;
                 user.setFirstName(rs.getString("firstName"));
                 user.setLastName(rs.getString("lastName"));
+                user.setPassword(rs.getString("password"));
                 user.setEmail(rs.getString("email"));
                 user.setUserName(rs.getString("userName")); 
                 user.setId(rs.getInt("id"));
@@ -130,7 +137,7 @@ public class UserDB {
         ResultSet rs = null;
         
         String query = "SELECT userName FROM User "
-                + "WHERE userName = ? "
+                + "WHERE userName = ?"
                 + "AND password = ?";
         
         try {
@@ -358,17 +365,41 @@ public class UserDB {
         }
     }
     
-    public static boolean emailExists(String email) {
+        public static boolean emailExists(String email) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT Email FROM User "
-                + "WHERE Email = ?";
+        String query = "SELECT userName FROM User "
+                + "WHERE email = ?";
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, email);
+            rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }    
+    
+    public static boolean checkUserEmail(String username, String email) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT userName FROM User "
+                + "WHERE email = ? AND userName= ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, email);
+            ps.setString(2, username);
             rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
