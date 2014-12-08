@@ -12,7 +12,7 @@
       </c:when>
       <c:otherwise>
         <table style="table-layout:fixed;">
-           <tr>
+           <tr style="text-align: left;">
             <th style="width:20%;">Qty</th>
             <th>Name</th>
             <th>Price</th>
@@ -20,7 +20,7 @@
             <th>&nbsp;</th>
          </tr>
           <c:forEach var="item" items="${cart.cartItems}">
-            <tr style="width:auto;" class="cart_row">
+            <tr style="width:auto; text-align: left;" class="cart_row">
               <td>
                   <form action="<c:url value='/order/updateItem' /> " method="post">
                   <input type="hidden" name="productNumber" 
