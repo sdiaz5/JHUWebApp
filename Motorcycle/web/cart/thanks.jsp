@@ -2,15 +2,10 @@
 
 <section>
     
-<h1>Thank you for your order</h1>
-<p>Here is the information that you entered:</p>
-
-<label  class="no_pad_top">Email</label>
-<span>${user.email}</span><br>
-<label class="no_pad_top">First Name</label>
-<span>${user.firstName}</span><br>
-<label class="no_pad_top">Last Name</label>
-<span>${user.lastName}</span><br>
+<h1>Thank you ${user.firstName} for your order</h1>
+<p>We're currently processing your order right now! Thanks for using Motorcyles 
+    4 U for all your motorcycle needs. If you have any questions or concerns
+    please call us at 1-888-555-5555</p>
 
 </section>
 
