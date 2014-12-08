@@ -21,7 +21,7 @@
       </td>
    </tr>
    <tr> 
-      <td><b>Card number</b></td>
+      <td><b>Card number (only digits please)</b></td>
       <td><input type="text" size="20" name="creditCardNumber" 
                  maxlength="25" required></td>
    </tr>
