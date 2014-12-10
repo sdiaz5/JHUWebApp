@@ -7,6 +7,7 @@
 package emedina.resultBeans;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.*;
 /**
  *
@@ -79,6 +80,21 @@ public class Cart implements Serializable {
                 return;
             }
         }
+    }
+    
+    public double getCartTotal() {
+        double cartTotal = 0.0;
+        for (CartItem item : cartItems){
+            cartTotal += item.getTotal();
+        }
+        return cartTotal;
+    }
+    
+    public String getCartTotalCurrencyFormat() {
+        double total = this.getCartTotal();
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        String formattedTotal = currency.format(total);
+        return formattedTotal;
     }
     
 }

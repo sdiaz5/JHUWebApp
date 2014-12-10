@@ -21,8 +21,8 @@
       </td>
    </tr>
    <tr> 
-      <td><b>Card number (only digits please)</b></td>
-      <td><input type="text" size="20" name="creditCardNumber" 
+      <td><b>Card number (dddd-dddd-dddd-dddd)</b></td>
+      <td><input type="text" pattern="\b\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4}\b" size="20" name="creditCardNumber" 
                  maxlength="25" required></td>
    </tr>
    <tr> 
@@ -42,7 +42,7 @@
             <option value="12">12</option> 
           </select>
           /
-          <select name="creditCardExpirationMonth">
+          <select name="creditCardExpirationYear">
             <option value="2014">2014</option>
             <option value="2015">2015</option>
             <option value="2016">2016</option>

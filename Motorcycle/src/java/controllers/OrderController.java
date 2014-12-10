@@ -35,7 +35,7 @@ public class OrderController extends HttpServlet {
             url = removeItem(request, response);
         } else if (requestURI.endsWith("/thanks")) {
             url = completeOrder(request, response);
-        }
+        } 
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -46,7 +46,7 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         String url = defaultURL;
-        if (requestURI.endsWith("/showCart")) {
+        if (requestURI.endsWith("/cart")) {
             showCart(request, response);
         } 
         getServletContext()
@@ -59,7 +59,8 @@ public class OrderController extends HttpServlet {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null || cart.getCount() == 0) {
-            request.setAttribute("emptyCart", "Your cart is empty");
+            String message = "You cart is empty please add an item to you cart to check out.";
+            request.setAttribute("message", message);
         } else {
             request.getSession().setAttribute("cart", cart);
         }
@@ -139,6 +140,10 @@ public class OrderController extends HttpServlet {
         }
         }
         
+        if(cart.getCount() == 0){
+            request.setAttribute("message", "You cart is empty please add an item to you cart to check out.");
+        }
+        
         
         return defaultURL;
     }
@@ -157,6 +162,25 @@ public class OrderController extends HttpServlet {
         invoice.setUser(user);
         invoice.setCartItems(cart.getCartItems());
         invoice.setConfirmationNumber(confirmationNumber);
+        
+        //Get Credit Card Info
+        CreditCard card = new CreditCard();
+        
+        card.setUserId(user.getId());
+        card.setCardType(request.getParameter("creditCardType"));
+        card.setExpMonth(request.getParameter("creditCardExpirationMonth"));
+        card.setExpYear(request.getParameter("creditCardExpirationYear"));
+        
+        String ccNum = request.getParameter("creditCardNumber");
+        
+        String creditCardNumber = ccNum.replaceAll("[^0-9]","");
+        card.setCreditCardNumber(creditCardNumber);
+        
+        //Write CreditCard info to the DB
+        CreditCardDB.insert(card);
+        
+        
+
         
         //update all the link tables with orderid, productid, and quantity
         //update product quanitities

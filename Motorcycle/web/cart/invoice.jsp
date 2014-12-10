@@ -11,7 +11,7 @@
 <table>
   <tr>
     <th>Date</th>
-    <td>${invoice.invoiceDateDefaultFormat}</td>
+    <td>${date}</td>
     <td></td>
   </tr>
   <tr>
@@ -46,7 +46,8 @@
   <tr>
     <th>Total:</th>
     <td></td>
-    <td>${invoice.invoiceTotalCurrencyFormat}</td>
+    <td></td>
+    <td>${cart.cartTotalCurrencyFormat}</td>
   </tr>
 </table>
 

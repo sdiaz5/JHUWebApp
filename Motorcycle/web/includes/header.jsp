@@ -34,7 +34,7 @@
                 <c:otherwise>
                     <li><a href="<c:url value='/account.jsp'/>">
                         My Account</a></li>
-                    <li><a href="<c:url value='/cart/cart.jsp'/>">
+                    <li><a href="<c:url value='/order/cart'/>">
                         Cart</a></li>
                         <li><form class="inline" method='post' name="logout" action="<c:url value='/user/logout'/>"><a href="javascript: document.logout.submit();">
                                     Logout</a></form></li>

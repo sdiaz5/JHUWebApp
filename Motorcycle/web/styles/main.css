@@ -157,7 +157,7 @@ br {
     float: left;
     margin-right: 1em;
 }
-#message {
+.message {
     margin-top: .5em;
     font-weight: bold;
     color: red;

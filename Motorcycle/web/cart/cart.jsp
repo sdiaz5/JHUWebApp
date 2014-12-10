@@ -5,12 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>Your cart</h1>
-<p id="message">${message}</p>
-  <c:choose>
-      <c:when test="${cart == null}">
-          <p>Your cart is empty.</p>
-      </c:when>
-      <c:otherwise>
+<p class="message">${message}</p>
+
         <table style="table-layout:fixed;">
            <tr style="text-align: left;">
             <th style="width:20%;">Qty</th>
@@ -53,14 +49,14 @@
             </tr>
           </c:forEach>
             </table>
-      </c:otherwise>
-  </c:choose>
+
+  
 
 <form action="<c:url value='/catalog'/>" method="get" id="float_left">
   <input type="submit" value="Continue Shopping">
 </form>
   
-<c:if test="${emptyCart == null}">
+<c:if test="${cart != null && cart.count != 0}">
     <form action="<c:url value='/cart/shipping.jsp'/>" method="post">
       <input type="submit" value="Checkout">
     </form>

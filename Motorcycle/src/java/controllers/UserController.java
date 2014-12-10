@@ -9,11 +9,13 @@ import data.UserDB;
 import emedina.resultBeans.ContactInfo;
 import emedina.resultBeans.User;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.*;
 /**
  *
  * @author mark
@@ -96,6 +98,10 @@ public class UserController extends HttpServlet {
             HttpServletResponse response)
     {
         User user = (User) request.getSession().getAttribute("user");
+        Date date = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("E MMM dd, yyyy");
+        String currentDate = ft.format(date);
+        request.setAttribute("date", currentDate);
         String rv = "/cart/invoice.jsp";
         if (user != null)
         {

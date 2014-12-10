@@ -19,6 +19,7 @@ public class Invoice implements Serializable {
     private Timestamp dateCreated;
     private Date dateOrdered;
     private int confirmationNumber;
+
     
     public Invoice(){
         
@@ -27,6 +28,7 @@ public class Invoice implements Serializable {
         dateCreated = null;
         dateOrdered = null;
         confirmationNumber = 0;
+
        
     }
     
