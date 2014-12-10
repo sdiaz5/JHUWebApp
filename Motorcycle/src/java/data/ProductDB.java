@@ -117,7 +117,7 @@ public class ProductDB {
         }
     }
     
-        public static int updateProductQuantity(Product product) {
+        public static int updateProductQuantity(Product product, int quantity) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -128,29 +128,29 @@ public class ProductDB {
             case JACKET:
                 query = "UPDATE Jacket SET "
                         + "quantity = ? "
-                        + "WHERE name = ?";
+                        + "WHERE id = ?";
                 break;
             case HELMET:
                 query = "UPDATE Helmet SET "
                         + "quantity = ? "
-                        + "WHERE name = ?";
+                        + "WHERE id = ?";
                 break;
             case GLOVE:
                 query = "UPDATE Gloves SET "
                         + "quantity = ? "
-                        + "WHERE name = ?";
+                        + "WHERE id = ?";
                 break;
             case MOTORCYCLE:
                 query = "UPDATE Motorcycle SET "
                         + "quantity = ? "
-                        + "WHERE name = ?";
+                        + "WHERE id = ?";
                 break;
         }
                        
         try {
             ps = connection.prepareStatement(query);
-            ps.setDouble(1,product.getQuantity());
-            ps.setString(2, product.getName());
+            ps.setDouble(1,quantity);
+            ps.setInt(2, product.getId());
             
             return ps.executeUpdate();
         } catch(SQLException e) {
@@ -238,6 +238,7 @@ public class ProductDB {
                 if(rs.next())
                 {
                     Motorcycle motorcycle = new Motorcycle();
+                    motorcycle.setId(rs.getInt("id"));
                     motorcycle.setName(rs.getString("name"));
                     motorcycle.setDescription(rs.getString("description"));
                     motorcycle.setPrice(rs.getDouble("price"));
@@ -254,6 +255,7 @@ public class ProductDB {
             {
                 if (rs.next()) {
                     product = new Product();
+                    product.setId(rs.getInt("id"));
                     product.setName(rs.getString("name"));
                     product.setDescription(rs.getString("description"));
                     product.setPrice(rs.getDouble("price"));
@@ -315,6 +317,7 @@ public class ProductDB {
             {
                 if(rs.next()) {
                     Motorcycle motorcycle = new Motorcycle();
+                    motorcycle.setId(rs.getInt("id"));
                     motorcycle.setName(rs.getString("name"));
                     motorcycle.setDescription(rs.getString("description"));
                     motorcycle.setPrice(rs.getDouble("price"));

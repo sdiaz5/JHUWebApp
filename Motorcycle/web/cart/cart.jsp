@@ -7,7 +7,7 @@
 <h1>Your cart</h1>
 <p id="message">${message}</p>
   <c:choose>
-      <c:when test="${emptyCart != null}">
+      <c:when test="${cart == null}">
           <p>Your cart is empty.</p>
       </c:when>
       <c:otherwise>

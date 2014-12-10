@@ -33,7 +33,9 @@ public class OrderController extends HttpServlet {
             url = updateItem(request, response);
         } else if (requestURI.endsWith("/removeItem")) {
             url = removeItem(request, response);
-        } 
+        } else if (requestURI.endsWith("/thanks")) {
+            url = completeOrder(request, response);
+        }
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -141,6 +143,30 @@ public class OrderController extends HttpServlet {
         return defaultURL;
     }
     
+    private String completeOrder(HttpServletRequest request,
+            HttpServletResponse response) {
+       
+        HttpSession session = request.getSession();
+        //create invoice with user id
+        User user = (User) session.getAttribute("user");
+        Cart cart = (Cart) session.getAttribute("cart");
+        int confirmationNumber = InvoiceDB.selectMaxConfirmationNumber();
+        
+        Invoice invoice = new Invoice();
+        
+        invoice.setUser(user);
+        invoice.setCartItems(cart.getCartItems());
+        invoice.setConfirmationNumber(confirmationNumber);
+        
+        //update all the link tables with orderid, productid, and quantity
+        //update product quanitities
+        InvoiceDB.insert(invoice);
+        
+        
+        //set cart to null
+        session.setAttribute("cart", null);
+        return "/cart/thanks.jsp"; 
+    }
 
     
 }

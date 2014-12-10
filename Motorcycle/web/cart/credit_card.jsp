@@ -7,7 +7,7 @@
 
 <h1>Enter your credit card information</h1>
 
-<form action="<c:url value='/cart/thanks.jsp' />" method="post">
+<form action="<c:url value='/order/thanks' />" method="post">
    <table>
    <tr> 
        <td><b>Credit card type</b></td>
