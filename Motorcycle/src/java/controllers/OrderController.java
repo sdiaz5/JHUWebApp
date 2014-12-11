@@ -12,6 +12,8 @@ import javax.servlet.http.*;
 
 import data.*;
 import emedina.resultBeans.*;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import utility.Utility;
 
 /**
@@ -35,7 +37,7 @@ public class OrderController extends HttpServlet {
             url = removeItem(request, response);
         } else if (requestURI.endsWith("/thanks")) {
             url = completeOrder(request, response);
-        } 
+        }
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -48,7 +50,11 @@ public class OrderController extends HttpServlet {
         String url = defaultURL;
         if (requestURI.endsWith("/cart")) {
             showCart(request, response);
-        } 
+        } else if (requestURI.endsWith("/pastOrders")){
+            url = pastOrders(request, response);
+        } else {
+            url = showPastOrder(request, response);
+        }
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);
@@ -190,6 +196,75 @@ public class OrderController extends HttpServlet {
         //set cart to null
         session.setAttribute("cart", null);
         return "/cart/thanks.jsp"; 
+    }
+    
+    private String pastOrders(HttpServletRequest request,
+            HttpServletResponse response){
+        
+        HttpSession session = request.getSession();
+        
+        User user = (User) session.getAttribute("user");
+        
+        
+        ArrayList<Integer> confirmationNumbers = InvoiceDB.selectConfirmationNumbers(user.getId());
+        
+        request.setAttribute("confirmationNumbers", confirmationNumbers);
+        
+        return "/cart/past_orders.jsp";
+    }
+    
+    private String showPastOrder(HttpServletRequest request,
+            HttpServletResponse response){
+        
+        HttpSession session = request.getSession();
+        
+        String confirmationNumber = request.getPathInfo();
+        
+        if (confirmationNumber != null){
+            
+            confirmationNumber = confirmationNumber.substring(1); 
+            
+            request.setAttribute("confirmationNumber", confirmationNumber);
+        }
+        
+        int confNum = Integer.parseInt(confirmationNumber);
+        
+        String date = InvoiceDB.selectOrderDate(confNum);
+        request.setAttribute("invoiceDate", date);
+        
+        ArrayList<Product> invoiceProducts = InvoiceDB.selectProducts(confNum);
+        request.setAttribute("invoiceProducts", invoiceProducts);
+        
+        Cart pastInvoice = new Cart();
+        
+        ArrayList<CartItem> invoiceItems = new ArrayList<>();
+        
+        for(Product p : invoiceProducts){
+            
+            CartItem invoiceItem = new CartItem();
+            invoiceItem.setQuantity(p.getQuantity());
+            invoiceItem.setProduct(p);
+            
+            invoiceItems.add(invoiceItem);
+        }
+        
+        pastInvoice.setCartItems(invoiceItems);
+        
+        request.setAttribute("pastInvoice", pastInvoice);
+        
+        double total = 0.0;
+        for(Product p : invoiceProducts){
+            total += p.getQuantity()*p.getPrice();
+        }
+        
+        
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        String formattedTotal = currency.format(total);
+        
+        request.setAttribute("Total", formattedTotal);
+        
+        return "/cart/orderHistory.jsp";
+        
     }
 
     

@@ -396,5 +396,182 @@ public class ProductDB {
             }
         }
         
-    }
-    
+        public static ArrayList<Product> selectOrderGloves(int orderId){
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            String query = "SELECT o.id as order_id, o.confirmationNumber, o.userId, og.quantity as invoice_quantity, g.* " +
+                        "From JHUAppdb.Order o " +
+                        "JOIN JHUAppdb.Order_has_Gloves og ON (o.id = og.Order_id) " +
+                        "JOIN JHUAppdb.Gloves g ON (og.Gloves_id = g.id) " +
+                        "WHERE o.id = ?";
+        
+            try{
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, orderId);
+                rs = ps.executeQuery();
+            
+                ArrayList<Product> gloves = new ArrayList<>();
+                while (rs.next()){
+                    Product p = new Product();
+                    p.setId(rs.getInt("id"));
+                    p.setName(rs.getString("name"));
+                    p.setDescription(rs.getString("description"));
+                    p.setPrice(rs.getDouble("price"));
+                    p.setSize(rs.getString("size"));
+                    p.setQuantity(rs.getInt("invoice_quantity"));
+                    p.setProductNumber(rs.getString("productNumber"));
+                    p.setType(Product.Type.GLOVE);
+                
+                    gloves.add(p);
+                
+                }
+                return gloves;
+            } catch(SQLException e){
+                System.err.println(e);
+                return null;
+            }finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+            }
+        
+        }
+        
+        public static ArrayList<Product> selectOrderHelmets(int orderId){
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            String query = "SELECT o.id as order_id, o.confirmationNumber, o.userId, oh.quantity as invoice_quantity, h.* " +
+                        "From JHUAppdb.Order o " +
+                        "JOIN JHUAppdb.Order_has_Helmet oh ON (o.id = oh.Order_id) " +
+                        "JOIN JHUAppdb.Helmet h ON (oh.Helmet_id = h.id) " +
+                        "WHERE o.id = ?";
+        
+            try{
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, orderId);
+                rs = ps.executeQuery();
+            
+                ArrayList<Product> helmets = new ArrayList<>();
+                while (rs.next()){
+                    Product p = new Product();
+                    p.setId(rs.getInt("id"));
+                    p.setName(rs.getString("name"));
+                    p.setDescription(rs.getString("description"));
+                    p.setPrice(rs.getDouble("price"));
+                    p.setSize(rs.getString("size"));
+                    p.setQuantity(rs.getInt("invoice_quantity"));
+                    p.setProductNumber(rs.getString("productNumber"));
+                    p.setType(Product.Type.HELMET);
+                
+                    helmets.add(p);
+                
+                }
+                return helmets;
+            } catch(SQLException e){
+                System.err.println(e);
+                return null;
+            }finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+            }
+        
+        }
+        
+        public static ArrayList<Product> selectOrderJackets(int orderId){
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+        
+            String query = "SELECT o.id as order_id, o.confirmationNumber, o.userId, oj.quantity as invoice_quantity, j.* " +
+                        "From JHUAppdb.Order o " +
+                        "JOIN JHUAppdb.Order_has_Jacket oj ON (o.id = oj.Order_id) " +
+                        "JOIN JHUAppdb.Jacket j ON (oj.Jacket_id = j.id) " +
+                        "WHERE o.id = ?";
+        
+            try{
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, orderId);
+                rs = ps.executeQuery();
+            
+                ArrayList<Product> jackets = new ArrayList<>();
+                while (rs.next()){
+                    Product p = new Product();
+                    p.setId(rs.getInt("id"));
+                    p.setName(rs.getString("name"));
+                    p.setDescription(rs.getString("description"));
+                    p.setPrice(rs.getDouble("price"));
+                    p.setSize(rs.getString("size"));
+                    p.setQuantity(rs.getInt("invoice_quantity"));
+                    p.setProductNumber(rs.getString("productNumber"));
+                    p.setType(Product.Type.JACKET);
+                
+                    jackets.add(p);
+                
+                }
+                return jackets;
+            } catch(SQLException e){
+                System.err.println(e);
+                return null;
+            }finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+            }
+        }
+        
+        public static ArrayList<Product> selectOrderMotorcycles(int orderId){
+            ConnectionPool pool = ConnectionPool.getInstance();
+            Connection connection = pool.getConnection();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            String query = "SELECT o.id as order_id, o.confirmationNumber, o.userId, om.quantity as invoice_quantity, m.* " +
+                        "From JHUAppdb.Order o " +
+                        "JOIN JHUAppdb.Order_has_Motorcycle om ON (o.id = om.Order_id) " +
+                        "JOIN JHUAppdb.Motorcycle m ON (om.Motorcycle_id = m.id) " +
+                        "WHERE o.id = ?";
+        
+            try{
+                ps = connection.prepareStatement(query);
+                ps.setInt(1, orderId);
+                rs = ps.executeQuery();
+            
+                ArrayList<Product> motorcycles = new ArrayList<>();
+                while (rs.next()){
+                    Product product = new Product();
+                    Motorcycle motorcycle = new Motorcycle();
+                    motorcycle.setId(rs.getInt("id"));
+                    motorcycle.setName(rs.getString("name"));
+                    motorcycle.setDescription(rs.getString("description"));
+                    motorcycle.setPrice(rs.getDouble("price"));
+                    motorcycle.setCondition(rs.getString("condition"));
+                    motorcycle.setBrand(rs.getString("brand"));
+                    motorcycle.setBikeType(rs.getString("type"));
+                    motorcycle.setQuantity(rs.getInt("invoice_quantity"));
+                    motorcycle.setProductNumber(rs.getString("productNumber"));
+                    motorcycle.setType(Product.Type.MOTORCYCLE);
+                    product = motorcycle;
+                
+                    motorcycles.add(product);
+                
+                }
+                
+                return motorcycles;
+            } catch(SQLException e){
+                System.err.println(e);
+                return null;
+            } finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+            }
+        }
+}

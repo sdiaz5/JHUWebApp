@@ -36,6 +36,7 @@
                         My Account</a></li>
                     <li><a href="<c:url value='/order/cart'/>">
                         Cart</a></li>
+                        <li><a href ="<c:url value='/order/pastOrders'/>">Past Orders</a></li>
                         <li><form class="inline" method='post' name="logout" action="<c:url value='/user/logout'/>"><a href="javascript: document.logout.submit();">
                                     Logout</a></form></li>
                 </c:otherwise>

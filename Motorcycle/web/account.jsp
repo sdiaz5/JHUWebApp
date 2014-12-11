@@ -16,31 +16,31 @@
     <label>First Name</label>
     <input type="text" name="firstName"  maxlength=20 
                value="${user.firstName}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>Last Name</label>
     <input type="text" name="lastName" value="${user.lastName}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>Email Address</label>
     <input type="email" name="email" value="${user.email}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
 
     <label>Street Address</label>
     <input type="text" name="street" value="${user.contactInfo.street}" required> 
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>City</label>
     <input type="text" name="city" value="${user.contactInfo.city}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>State</label>
     <input type="text" name="state" value="${user.contactInfo.state}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>Zip Code</label>
     <input type="text" name="zip" value="${user.contactInfo.zipCode}" required>
-    <p class="required">*</p><br>
+    <span class="required">*</span><br>
     
     <label>&nbsp;</label>
     <input type="submit" value="Continue">

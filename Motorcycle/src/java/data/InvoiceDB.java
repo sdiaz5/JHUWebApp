@@ -91,4 +91,132 @@ public class InvoiceDB {
         }
     }
     
+    public static ArrayList<Integer> selectConfirmationNumbers(int userId){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT confirmationNumber FROM JHUAppDb.Order where userId = ?";
+        
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, userId);
+            rs = ps.executeQuery();
+            
+            ArrayList<Integer> confirmationNumbers = new ArrayList<>();
+            while(rs.next()){
+                confirmationNumbers.add(rs.getInt("confirmationNumber"));
+            }
+            return confirmationNumbers;
+        }catch (SQLException e) {
+                System.out.println(e);
+                return null;
+        } finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+        }
+        
+    }
+    
+    public static int selectInvoiceId(int confirmationNumber){
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT id FROM JHUAppDb.Order where confirmationNumber = ?";
+        
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, confirmationNumber);
+            rs = ps.executeQuery();
+            
+            int orderId = 0;
+            if(rs.next()){
+                orderId = rs.getInt("id");
+            }
+            
+            return orderId;
+        }catch (SQLException e) {
+                System.out.println(e);
+                return 0;
+        } finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+        }
+        
+    }
+    
+    public static ArrayList<Product> selectProducts(int confirmationNumber){
+        
+        int orderId = selectInvoiceId(confirmationNumber);
+        
+        ArrayList<Product> invoiceProducts = new ArrayList<>();
+        
+        ArrayList<Product> gloves = ProductDB.selectOrderGloves(orderId);
+        ArrayList<Product> helmets = ProductDB.selectOrderHelmets(orderId);
+        ArrayList<Product> jackets = ProductDB.selectOrderJackets(orderId);
+        ArrayList<Product> motorcycles = ProductDB.selectOrderMotorcycles(orderId);
+        
+        if(motorcycles.size() != 0){
+            for(Product motorcycle : motorcycles){
+                invoiceProducts.add(motorcycle);
+            }
+        }
+        
+        if(helmets.size() != 0){
+            for(Product helmet : helmets){
+                invoiceProducts.add(helmet);
+            }
+        }
+        
+        if(jackets.size() != 0){
+            for(Product jacket : jackets){
+                invoiceProducts.add(jacket);
+            }
+        }
+        
+        if(gloves.size() != 0){
+            for(Product glove : gloves){
+                invoiceProducts.add(glove);
+            }
+        }
+        
+        return invoiceProducts;        
+        
+    }
+    
+    public static String selectOrderDate(int confirmationNumber){
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT dateOrdered from JHUAppDb.Order where confirmationNumber = ?";
+        
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, confirmationNumber);
+            rs = ps.executeQuery();
+            
+            java.sql.Date date = null;
+            if(rs.next()){
+                 date = rs.getDate("dateOrdered");
+                
+            }
+            return date.toString();
+        }catch (SQLException e) {
+                System.out.println(e);
+                return "";
+        } finally {
+                DBUtil.closeResultSet(rs);
+                DBUtil.closePreparedStatement(ps);
+                pool.freeConnection(connection);
+        }
+    }
+    
 }
