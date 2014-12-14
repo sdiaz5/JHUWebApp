@@ -97,7 +97,10 @@ public class UserController extends HttpServlet {
     private String setShipping(HttpServletRequest request,
             HttpServletResponse response)
     {
+        
         User user = (User) request.getSession().getAttribute("user");
+        user = UserDB.selectUser(user.getUserName());
+        request.getSession().setAttribute("user", user);
         Date date = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("E MMM dd, yyyy");
         String currentDate = ft.format(date);
@@ -124,8 +127,13 @@ public class UserController extends HttpServlet {
                 contact.setCity(city);
                 contact.setZipCode(zip);
                 user.setContactInfo(contact);
-
-                UserDB.updateContact(contact, user.getId());
+                if(UserDB.selectContactInfo(user.getId()) == null){
+                    UserDB.insertContact(contact, user.getId());
+                    
+                }else{
+                    UserDB.updateContact(contact, user.getId());
+                }
+                
             }else{
                 rv = "/user/setShipping";
             }
@@ -205,8 +213,13 @@ public class UserController extends HttpServlet {
                 contact.setCity(city);
                 contact.setZipCode(zip);
                 user.setContactInfo(contact);
-
-                UserDB.updateContact(contact, user.getId());
+                if(UserDB.selectContactInfo(user.getId()) == null){
+                    UserDB.insertContact(contact, user.getId());
+                    
+                }else{
+                    UserDB.updateContact(contact, user.getId());
+                }
+                
                 request.setAttribute("account_message", account_message);
             }
         }

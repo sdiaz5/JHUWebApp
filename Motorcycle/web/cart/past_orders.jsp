@@ -4,12 +4,12 @@
 <section>
     <h1>Order History:</h1>
 
-    <c:if test="${confirmationNumbers == null}">
+    <c:if test="${confirmationNumbers.isEmpty()}">
         <p class = "message">You have no past orders.  Please place an order.</p>
     </c:if>
 
 
-    <c:if test="${confirmationNumbers != null}">
+    <c:if test="${!confirmationNumbers.isEmpty()}">
     <table>
 
 
