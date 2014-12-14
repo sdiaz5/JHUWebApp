@@ -41,10 +41,6 @@ p { padding-bottom: 0.5em; }
     
 em { font-weight: bold; }
 
-error { color: red;
-        font-size: 125%;
-        font-weight: bold;
-        }
 
 /* the styles for the header */
 header { 
@@ -199,3 +195,9 @@ footer p {
     font-weight: bold;
     color: red;
 }
+
+.error { 
+        color: red;
+        font-size: 125%;
+        font-weight: bold;
+        }
